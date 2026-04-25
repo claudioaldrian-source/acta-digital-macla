@@ -80,8 +80,8 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   letter-spacing:1.5px; padding:2px 10px; border-radius:4px; color:#fff;
 }
 .top-fouls-row { display:flex; align-items:center; gap:4px; }
-.top-fouls-label { font-size:9px; color:var(--muted); }
-.top-fouls-num { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:800; }
+.top-fouls-label { font-size:11px; color:#ffffff; }
+.top-fouls-num { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:900; }
 .top-tm-dots { display:flex; gap:3px; align-items:center; margin-top:2px; }
 .tm-dot { width:10px; height:10px; border-radius:50%; border:1px solid #3a4a6a; }
 
@@ -217,6 +217,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .bb-btn.otrasfalt { background:#c0392b; color:#fff; }
 .bb-btn.tirolibr  { background:#1a2a4a; color:#7090c0; }
 .bb-btn.perdida   { background:#1a2a4a; color:#7090c0; }
+.bb-btn.falta-personal { background:#c0392b !important; color:#fff !important; }
 .bb-btn.continuar { background:#8B6914; color:#ffd700; flex:0 0 100px; }
 .bb-sep { width:1px; background:#1a2030; flex-shrink:0; }
 
@@ -291,6 +292,80 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .ev-pts { font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:900; flex-shrink:0; }
 .ev-time { font-size:9px; color:var(--muted); flex-shrink:0; }
 
+/* OTRAS FALTAS */
+.otras-opt {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:9px; margin-bottom:6px;
+  background:#111827; border:1.5px solid #374151;
+  cursor:pointer; transition:all 0.15s; user-select:none;
+}
+.otras-opt:active, .otras-opt.selected { background:#1a2a50; border-color:#3b82f6; }
+.otras-opt-icon {
+  width:32px; height:32px; border-radius:6px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:12px; color:#fff; letter-spacing:0.5px;
+}
+.otras-opt-info { flex:1; }
+.otras-opt-name { font-size:13px; font-weight:700; color:var(--text); }
+.otras-opt-sub  { font-size:10px; color:var(--muted); margin-top:1px; }
+.otras-opt-radio {
+  width:16px; height:16px; border-radius:50%;
+  border:2px solid #374151; flex-shrink:0; transition:all 0.15s;
+}
+.otras-opt-radio.selected { background:#3b82f6; border-color:#3b82f6; }
+
+/* FT shots */
+.ft-shot-row {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:9px; margin-bottom:6px;
+  background:#111827; border:1px solid #374151;
+}
+.ft-shot-label {
+  font-family:'Barlow Condensed',sans-serif; font-size:14px;
+  font-weight:700; color:var(--muted); width:50px; flex-shrink:0;
+}
+.ft-shot-btns { display:flex; gap:6px; }
+.ft-shot-btn {
+  width:42px; height:42px; border-radius:8px; border:1.5px solid #374151;
+  background:#1f2937; cursor:pointer; font-size:18px;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.15s; font-weight:700;
+}
+.ft-shot-btn.made   { background:#065f46; border-color:#22c55e; }
+.ft-shot-btn.missed { background:#7f1d1d; border-color:#ef4444; }
+.ft-shot-result {
+  flex:1; text-align:right; font-family:'Barlow Condensed',sans-serif;
+  font-size:13px; font-weight:700; color:var(--muted);
+}
+.ft-shot-result.made-txt   { color:#22c55e; }
+.ft-shot-result.missed-txt { color:#ef4444; }
+
+/* FT count buttons */
+.ftc-btn {
+  flex:1; padding:8px; border-radius:7px; border:1.5px solid #374151;
+  background:#111827; color:var(--muted); font-size:12px; font-weight:700;
+  cursor:pointer; font-family:'Barlow Condensed',sans-serif;
+  transition:all 0.15s;
+}
+.ftc-btn.active { background:#1d4ed8; border-color:#3b82f6; color:#fff; }
+
+/* Otras faltas - player selector */
+.otras-player-btn {
+  display:flex; align-items:center; gap:10px;
+  padding:9px 11px; border-radius:9px;
+  background:#111827; border:1.5px solid #374151;
+  cursor:pointer; transition:all 0.15s;
+}
+.otras-player-btn:active { background:#1a2a50; border-color:#3b82f6; }
+.otras-player-num {
+  width:32px; height:32px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:13px; color:#fff;
+}
+.otras-player-info { flex:1; }
+.otras-player-name { font-size:13px; font-weight:700; color:var(--text); }
+.otras-player-sub  { font-size:10px; color:var(--muted); margin-top:1px; }
+
 /* MODALS */
 .modal-overlay { display:none; position:fixed; inset:0; background:#000c; z-index:100;
   align-items:center; justify-content:center; }
@@ -342,6 +417,11 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   margin-bottom:6px; transition:all 0.15s; }
 .foul-opt:active { background:#1a2a50; }
 .foul-opt-sub { font-size:9px; color:var(--muted); display:block; margin-top:2px; }
+
+#court-svg {
+  touch-action: none;
+}
+
 </style>
 </head>
 <body>
@@ -568,7 +648,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
                  SVG court = 480×300. Scale: 480/28=17.1 per m, 300/15=20 per m
                  Paint width = 5.8×20 = 116px from baseline, height = 4.9×20 = 98px each side of center -->
             <rect id="paint-local" x="60" y="111" width="116" height="98"
-              fill="#1a56db33" stroke="#fff" stroke-width="2"/>
+              fill="#1a56db55" stroke="#fff" stroke-width="2"/>
 
             <!-- FT line (top of paint, vertical) at x=176 -->
             <!-- FT circle radius 1.8m = 36px -->
@@ -594,7 +674,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
             <!-- ── VISITOR (RIGHT) SIDE ── -->
             <rect id="paint-visitor" x="424" y="111" width="116" height="98"
-              fill="#c0392b33" stroke="#fff" stroke-width="2"/>
+              fill="#c0392b55" stroke="#fff" stroke-width="2"/>
 
             <circle cx="424" cy="160" r="36"
               fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6 4"/>
@@ -615,7 +695,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
             <!-- CUA logo -->
             <circle cx="300" cy="160" r="40" fill="#1a3a8a" stroke="#fff" stroke-width="1.8"/>
             <text x="300" y="167" text-anchor="middle" fill="#fff"
-              font-size="18" font-weight="900"
+              font-size="25" font-weight="900"
               font-family="Arial Black,Arial,sans-serif" letter-spacing="3">CUA</text>
 
             <!-- Center jump circle (small) -->
@@ -649,7 +729,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
     <button class="bb-btn tapon" onclick="registerTapon()">
       <span class="bb-icon">🏀</span>TAPÓN
     </button>
-    <button class="bb-btn otrasfalt" onclick="openFoulModal()">
+    <button class="bb-btn otrasfalt" id="btn-otras-faltas" onclick="openFoulModal()">
       <span class="bb-icon">⚠️</span>OTRAS<br>FALTAS
     </button>
     <button class="bb-btn tirolibr" onclick="openFTfromBar()">
@@ -694,24 +774,119 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   </div>
 </div>
 <div class="ft-modal" id="modal-ft">
-  <div class="ft-box">
-    <div class="ft-title">🎯 TIRO LIBRE</div>
-    <div class="ft-player-name" id="ft-player-name">Jugador</div>
-    <div class="ft-attempts" id="ft-attempts"></div>
-    <div class="ft-buttons">
-      <button class="ft-btn cancel" onclick="closeFT()">Cancelar</button>
-      <button class="ft-btn confirm" onclick="confirmFT()">✓ Confirmar</button>
+  <div class="ft-box" style="width:min(94vw,420px);padding:20px 18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <div class="ft-title">🎯 TIROS LIBRES</div>
+      <button onclick="closeFT()" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer">✕</button>
+    </div>
+    <div class="ft-player-name" id="ft-player-name" style="margin-bottom:16px">Jugador</div>
+
+    <!-- How many FT -->
+    <div style="font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:1px">CANTIDAD DE TIROS</div>
+    <div style="display:flex;gap:6px;margin-bottom:16px">
+      <button onclick="setFTcount(1)" id="ftc-1" class="ftc-btn">1 Tiro</button>
+      <button onclick="setFTcount(2)" id="ftc-2" class="ftc-btn active">2 Tiros</button>
+      <button onclick="setFTcount(3)" id="ftc-3" class="ftc-btn">3 Tiros</button>
+    </div>
+
+    <!-- Shot results -->
+    <div id="ft-shots-wrap"></div>
+
+    <div class="ft-buttons" style="margin-top:16px">
+      <button class="ft-btn cancel" onclick="closeFT()">CANCELAR</button>
+      <button class="ft-btn confirm" onclick="confirmFT()">✓ ACEPTAR</button>
     </div>
   </div>
 </div>
-<div class="foul-modal" id="modal-foul">
+<!-- OTRAS FALTAS MODAL -->
+<div class="modal-overlay" id="modal-otras-faltas">
+  <div class="modal-box" style="max-width:380px">
+    <div class="modal-title" style="color:#ef4444">⚠️ OTRAS FALTAS</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:14px">
+      Seleccioná el tipo de falta — luego elegí el equipo y jugador
+    </div>
+
+    <div class="otras-opt" onclick="selectOtraFalta('tecnica')">
+      <div class="otras-opt-icon" style="background:#f97316">T</div>
+      <div class="otras-opt-info">
+        <div class="otras-opt-name">Técnica</div>
+        <div class="otras-opt-sub">2 tiros libres al equipo contrario</div>
+      </div>
+      <div class="otras-opt-radio" id="radio-tecnica"></div>
+    </div>
+
+    <div class="otras-opt" onclick="selectOtraFalta('antideportiva')">
+      <div class="otras-opt-icon" style="background:#dc2626">A</div>
+      <div class="otras-opt-info">
+        <div class="otras-opt-name">Antideportiva</div>
+        <div class="otras-opt-sub">2 tiros libres + posesión</div>
+      </div>
+      <div class="otras-opt-radio" id="radio-antideportiva"></div>
+    </div>
+
+    <div class="otras-opt" onclick="selectOtraFalta('tecnica-coach')">
+      <div class="otras-opt-icon" style="background:#7c3aed">TC</div>
+      <div class="otras-opt-info">
+        <div class="otras-opt-name">Técnica Banquillo C <span style="color:var(--muted);font-size:10px">(coach)</span></div>
+        <div class="otras-opt-sub">Falta técnica al entrenador</div>
+      </div>
+      <div class="otras-opt-radio" id="radio-tecnica-coach"></div>
+    </div>
+
+    <div class="otras-opt" onclick="selectOtraFalta('tecnica-banquillo')">
+      <div class="otras-opt-icon" style="background:#5b21b6">TB</div>
+      <div class="otras-opt-info">
+        <div class="otras-opt-name">Técnica Banquillo B <span style="color:var(--muted);font-size:10px">(banquillo)</span></div>
+        <div class="otras-opt-sub">Falta técnica a integrante del banco</div>
+      </div>
+      <div class="otras-opt-radio" id="radio-tecnica-banquillo"></div>
+    </div>
+
+    <div class="otras-opt" onclick="selectOtraFalta('descalificante')">
+      <div class="otras-opt-icon" style="background:#991b1b">D</div>
+      <div class="otras-opt-info">
+        <div class="otras-opt-name">Descalificante</div>
+        <div class="otras-opt-sub">Expulsión del jugador</div>
+      </div>
+      <div class="otras-opt-radio" id="radio-descalificante"></div>
+    </div>
+
+    <!-- Team selector (shown after type selected) -->
+    <div id="otras-team-sel" style="display:none;margin-top:14px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600">¿A qué equipo se le sanciona?</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="confirmOtraFalta('local')" id="otras-btn-local"
+          style="flex:1;padding:10px;border-radius:8px;border:none;font-weight:800;font-size:13px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px">
+          🏠 LOCAL
+        </button>
+        <button onclick="confirmOtraFalta('visitor')" id="otras-btn-visitor"
+          style="flex:1;padding:10px;border-radius:8px;border:none;font-weight:800;font-size:13px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px">
+          ✈️ VISITANTE
+        </button>
+      </div>
+    </div>
+
+    <button class="modal-close" onclick="closeOtrasFaltas()" style="margin-top:12px">Cancelar</button>
+  </div>
+</div>
+
+<!-- PLAYER PICKER MODAL (for otras faltas) -->
+<div class="modal-overlay" id="modal-otras-player">
+  <div class="modal-box" style="max-width:380px">
+    <div class="modal-title" id="otras-player-title" style="color:#f87171;margin-bottom:4px">Seleccioná el jugador</div>
+    <div style="font-size:10px;color:var(--muted);margin-bottom:12px" id="otras-player-subtitle"></div>
+    <div id="otras-player-list"
+         style="display:flex;flex-direction:column;gap:5px;max-height:320px;overflow-y:auto;
+                margin-bottom:10px"></div>
+    <button class="modal-close" onclick="closeOtrasPlayer()">Cancelar</button>
+  </div>
+</div>
+
+<!-- OLD FOUL MODAL (kept for ft triggers) -->
+<div class="foul-modal" id="modal-foul" style="display:none">
   <div class="foul-box">
     <div class="foul-title">⚠️ FALTA</div>
     <div class="foul-who" id="foul-who">Jugador</div>
-    <div onclick="registerFoul('personal')" class="foul-opt">Falta Personal<span class="foul-opt-sub">Sin tiro libre</span></div>
-    <div onclick="registerFoul('ft1')" class="foul-opt">Falta + 1 Tiro Libre<span class="foul-opt-sub">Simple / bonus</span></div>
-    <div onclick="registerFoul('ft2')" class="foul-opt">Falta + 2 Tiros Libres<span class="foul-opt-sub">En acto de doble</span></div>
-    <div onclick="registerFoul('ft3')" class="foul-opt">Falta + 3 Tiros Libres<span class="foul-opt-sub">En acto de triple</span></div>
     <button class="modal-close" onclick="closeFoul()">Cancelar</button>
   </div>
 </div>
@@ -721,54 +896,35 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 //  STATE
 // ═══════════════════════════════════════════════════════
 const STATE = {
-  category: 'Mini',
-  venue: '',
-  date: '',
-  periodMins: 10,
-  period: 1,
-  clock: { min: 10, sec: 0 },
-  running: false,
-  clockInterval: null,
-  local: {
-    name: 'Club Unión', color: '#1a56db', coach: '',
-    score: 0, fouls: 0, timeouts: 2,
-    players: [], // { number, name, points, fouls, inCourt }
-  },
-  visitor: {
-    name: 'Visitante', color: '#c0392b', coach: '',
-    score: 0, fouls: 0, timeouts: 2,
-    players: [],
-  },
-  selectedPlayer: null, // { side, number }
-  selectedSide: null,
-  foulTarget: null,
-  ftData: { side: null, playerNum: null, shots: [], total: 0 },
-  bancoSide: null,
-  bancoReplacingNum: null,
-  events: [],
+  category: 'Mini', venue: '', date: '', periodMins: 10,
+  period: 1, clock: { min: 10, sec: 0 }, running: false, clockInterval: null,
+  local:    { name:'Club Unión', color:'#1a56db', coach:'', score:0, fouls:0, timeouts:2, players:[] },
+  visitor:  { name:'Visitante',  color:'#c0392b', coach:'', score:0, fouls:0, timeouts:2, players:[] },
+  selectedPlayer: null, selectedSide: null, foulTarget: null,
+  ftData: { side:null, playerNum:null, shots:[], total:0 },
+  bancoSide: null, events: [],
+  gameStarted: false, gameId: null, startTime: null, finished: false,
 };
 
 // ═══════════════════════════════════════════════════════
-//  SETUP BUILD
+//  SETUP
 // ═══════════════════════════════════════════════════════
-const DEFAULT_NUMS_LOCAL   = [4,5,6,7,8,9,10,11,12,14];
-const DEFAULT_NUMS_VISITOR = [4,5,6,7,8,9,10,11,12,14];
+const DEFAULT_NUMS = [4,5,6,7,8,9,10,11,12,14];
 
 function buildSetupPlayers() {
   ['local','visitor'].forEach(side => {
-    const nums = side === 'local' ? DEFAULT_NUMS_LOCAL : DEFAULT_NUMS_VISITOR;
     const container = document.getElementById('players-' + side);
     container.innerHTML = '';
-    nums.forEach((num, i) => {
+    DEFAULT_NUMS.forEach((num, i) => {
       const row = document.createElement('div');
       row.className = 'player-row-setup';
       row.innerHTML = `
-        <input class="num" type="number" value="${num}" placeholder="#" min="0" max="99"
-          onchange="updateSetupNum('${side}',${i},this.value)">
-        <input class="name" type="text" placeholder="Apellido / Nombre" id="setup-${side}-name-${i}">
+        <input class="num" type="number" value="${num}" min="0" max="99"
+          style="width:44px;padding:5px;border-radius:6px;background:#1a2a4a;border:1px solid #2a3a5e;color:#fff;text-align:center;font-size:12px">
+        <input class="name" type="text" placeholder="Apellido / Nombre"
+          style="flex:1;padding:5px 8px;border-radius:6px;background:#1a2a4a;border:1px solid #2a3a5e;color:#fff;font-size:12px">
         <div class="cap ${i < 5 ? 'active' : ''}" id="cap-${side}-${i}"
-          onclick="toggleCap('${side}',${i})" title="En cancha al inicio">★</div>
-      `;
+          onclick="toggleCap('${side}',${i})" title="Titular">★</div>`;
       container.appendChild(row);
     });
   });
@@ -776,17 +932,11 @@ function buildSetupPlayers() {
 
 function toggleCap(side, idx) {
   const el = document.getElementById(`cap-${side}-${idx}`);
-  const container = document.getElementById('players-' + side);
-  const caps = container.querySelectorAll('.cap.active');
-  if (el.classList.contains('active')) {
-    el.classList.remove('active');
-  } else {
-    if (caps.length >= 5) { alert('Ya tenés 5 titulares seleccionados.'); return; }
-    el.classList.add('active');
-  }
+  const active = document.getElementById('players-' + side).querySelectorAll('.cap.active');
+  if (el.classList.contains('active')) { el.classList.remove('active'); }
+  else { if (active.length >= 5) { alert('Ya tenés 5 titulares.'); return; } el.classList.add('active'); }
 }
 
-function updateSetupNum(side, idx, val) { /* handled on read */ }
 function updateBadge(side) {
   const name = document.getElementById('cfg-' + side + '-name').value;
   document.getElementById('badge-' + side).textContent = name.slice(0,3).toUpperCase();
@@ -797,476 +947,102 @@ function updateColor(side, val) {
 }
 
 function readSetupPlayers(side) {
-  const container = document.getElementById('players-' + side);
-  const rows = container.querySelectorAll('.player-row-setup');
-  const players = [];
-  rows.forEach((row, i) => {
-    const num = parseInt(row.querySelector('.num').value) || (i + 4);
-    const name = row.querySelector('.name').value.trim();
-    const cap = row.querySelector('.cap');
-    players.push({ number: num, name, points: 0, fouls: 0, inCourt: cap.classList.contains('active') });
-  });
-  return players;
+  const rows = document.getElementById('players-' + side).querySelectorAll('.player-row-setup');
+  return Array.from(rows).map((row, i) => ({
+    number: parseInt(row.querySelector('.num').value) || DEFAULT_NUMS[i],
+    name:   row.querySelector('.name').value.trim(),
+    points: 0, fouls: 0,
+    inCourt: row.querySelector('.cap').classList.contains('active'),
+  }));
 }
 
 function startGame() {
+  const lp = readSetupPlayers('local');
+  const vp = readSetupPlayers('visitor');
+  if (lp.filter(p=>p.inCourt).length !== 5) { alert('Seleccioná exactamente 5 titulares locales.'); return; }
+  if (vp.filter(p=>p.inCourt).length !== 5) { alert('Seleccioná exactamente 5 titulares visitantes.'); return; }
 
-  console.log("Iniciando partido...");
-  initGameScreen();
-  const localPlayers   = readSetupPlayers('local');
-  const visitorPlayers = readSetupPlayers('visitor');
-
-  if (localPlayers.filter(p => p.inCourt).length !== 5) {
-    alert('Seleccioná exactamente 5 jugadores locales para el quinteto inicial.'); return;
-  }
-  if (visitorPlayers.filter(p => p.inCourt).length !== 5) {
-    alert('Seleccioná exactamente 5 jugadores visitantes para el quinteto inicial.'); return;
-  }
-
-  STATE.category  = document.getElementById('cfg-cat').value;
-  STATE.venue     = document.getElementById('cfg-venue').value || 'Gimnasio Club Unión';
-  STATE.date      = document.getElementById('cfg-date').value;
+  STATE.category   = document.getElementById('cfg-cat').value;
+  STATE.venue      = document.getElementById('cfg-venue').value || 'Gimnasio Club Unión';
+  STATE.date       = document.getElementById('cfg-date').value;
   STATE.periodMins = parseInt(document.getElementById('cfg-mins').value);
-
-  STATE.local.name   = document.getElementById('cfg-local-name').value || 'Local';
-  STATE.local.color  = document.getElementById('cfg-local-color').value;
-  STATE.local.coach  = document.getElementById('cfg-local-coach').value;
-  STATE.local.players = localPlayers;
-
+  STATE.local.name  = document.getElementById('cfg-local-name').value || 'Local';
+  STATE.local.color = document.getElementById('cfg-local-color').value;
+  STATE.local.coach = document.getElementById('cfg-local-coach').value;
+  STATE.local.players = lp; STATE.local.score = 0; STATE.local.fouls = 0;
   STATE.visitor.name  = document.getElementById('cfg-visitor-name').value || 'Visitante';
   STATE.visitor.color = document.getElementById('cfg-visitor-color').value;
   STATE.visitor.coach = document.getElementById('cfg-visitor-coach').value;
-  STATE.visitor.players = visitorPlayers;
-
+  STATE.visitor.players = vp; STATE.visitor.score = 0; STATE.visitor.fouls = 0;
   STATE.clock = { min: STATE.periodMins, sec: 0 };
-  STATE.gameStarted = true;
-  STATE.gameId = Date.now();
-  STATE.startTime = new Date().toLocaleTimeString('es-AR', {hour:'2-digit',minute:'2-digit'});
-  STATE.date = document.getElementById('cfg-date').value;
-  STATE.finished = false;
+  STATE.period = 1; STATE.events = []; STATE.selectedPlayer = null;
+  STATE.gameStarted = true; STATE.gameId = Date.now(); STATE.finished = false;
+  STATE.startTime = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
 
-  // Apply colors
   document.documentElement.style.setProperty('--local',   STATE.local.color);
   document.documentElement.style.setProperty('--visitor', STATE.visitor.color);
-
-  // Update court paint zones
-  document.getElementById('paint-local').setAttribute('fill', STATE.local.color + '33');
-  document.getElementById('paint-visitor').setAttribute('fill', STATE.visitor.color + '33');
-
   initGameScreen();
   showScreen('game');
-}
-
-// ═══════════════════════════════════════════════════════
-//  GAME SCREEN INIT
-// ═══════════════════════════════════════════════════════
-function initGameScreen() {
-  // Scoreboard names
-  document.getElementById('tb-local-name').textContent  = STATE.local.name;
-document.getElementById('tb-local-name').style.color  = STATE.local.color;
-
-document.getElementById('tb-visitor-name').textContent = STATE.visitor.name;
-document.getElementById('tb-visitor-name').style.color = STATE.visitor.color;
-  document.getElementById('sb-meta-left').textContent = `🏀 ${STATE.category} · ${STATE.local.name.toUpperCase()}`;
-  document.getElementById('sb-meta-right').textContent = `${STATE.date} · ${STATE.venue}`;
-
-  document.getElementById('col-local-name').textContent   = STATE.local.name;
-  document.getElementById('col-visitor-name').textContent = STATE.visitor.name;
-
-  document.getElementById('col-local-header').style.background =
-    `linear-gradient(135deg, ${STATE.local.color}cc, ${STATE.local.color}66)`;
-  document.getElementById('col-visitor-header').style.background =
-    `linear-gradient(135deg, ${STATE.visitor.color}cc, ${STATE.visitor.color}66)`;
-
-  renderQuinteto('local');
-  renderQuinteto('visitor');
-  renderClock();
-  renderScores();
-
-  // Court click
-  document.getElementById('court-svg').addEventListener('click', onCourtClick);
-  // Long press court → foul
-  document.getElementById('court-svg').addEventListener('contextmenu', e => { e.preventDefault(); openFoulModal(); });
-}
-
-// ═══════════════════════════════════════════════════════
-//  RENDER QUINTETO
-// ═══════════════════════════════════════════════════════
-function renderQuinteto(side) {
-  const container = document.getElementById('quinteto-' + side);
-  container.innerHTML = '';
-  const team = STATE[side];
-  const inCourt = team.players.filter(p => p.inCourt);
-
-  inCourt.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'player-card' + (p.fouls >= 5 ? ' fouled-out' : '');
-    const isSel = STATE.selectedPlayer && STATE.selectedPlayer.side === side && STATE.selectedPlayer.number === p.number;
-    if (isSel) card.classList.add('selected');
-
-    // Foul dots
-    let dotsHtml = '';
-    for (let i = 0; i < 5; i++) {
-      dotsHtml += `<div class="pc-foul-dot${i < p.fouls ? ' active' : ''}"></div>`;
-    }
-
-    card.innerHTML = `
-      <div class="pc-num" style="background:${p.fouls >= 5 ? '#ef4444' : team.color}">${p.number}</div>
-      <div class="pc-info">
-        <div class="pc-name">${p.name || 'Nº' + p.number}</div>
-        <div class="pc-stats">
-          <span class="pc-pts">${p.points}</span>
-          <div class="pc-fouls">${dotsHtml}</div>
-        </div>
-      </div>
-    `;
-
-    card.onclick = () => selectPlayer(side, p.number);
-    container.appendChild(card);
-  });
-}
-
-// ═══════════════════════════════════════════════════════
-//  SELECT PLAYER
-// ═══════════════════════════════════════════════════════
-function selectPlayer(side, number) {
-  if (STATE.selectedPlayer && STATE.selectedPlayer.side === side && STATE.selectedPlayer.number === number) {
-    // Deselect
-    STATE.selectedPlayer = null;
-    STATE.selectedSide = null;
-    document.getElementById('selected-info').classList.add('hidden');
-  } else {
-    STATE.selectedPlayer = { side, number };
-    STATE.selectedSide = side;
-    const team = STATE[side];
-    const p = team.players.find(pl => pl.number === number);
-    const info = document.getElementById('selected-info');
-    info.classList.remove('hidden');
-    info.style.borderColor = team.color;
-    info.style.color = team.color;
-    info.textContent = `${side === 'local' ? '🏠' : '✈️'} Nº${number} ${p.name || ''} — Tocá la cancha para anotar`;
-  }
-  renderQuinteto('local');
-  renderQuinteto('visitor');
-}
-
-// ═══════════════════════════════════════════════════════
-//  COURT CLICK → DETECT ZONE → SCORE
-// ═══════════════════════════════════════════════════════
-function onCourtClick(e) {
-  if (!STATE.selectedPlayer) {
-    document.getElementById('court-hint').style.color = '#f87171';
-    setTimeout(() => document.getElementById('court-hint').style.color = '', 800);
-    return;
-  }
-
-  const svg = document.getElementById('court-svg');
-  const rect = svg.getBoundingClientRect();
-  const svgW = 520, svgH = 270;
-
-  // Map click to SVG coords
-  const x = ((e.clientX - rect.left) / rect.width)  * svgW;
-  const y = ((e.clientY - rect.top)  / rect.height) * svgH;
-
-  const side = STATE.selectedPlayer.side;
-  const pts  = detectZone(x, y, side);
-
-  if (pts === 0) {
-    // No valid zone (center court etc) - ask?
-    return;
-  }
-
-  if (pts === 1) {
-    // Free throw
-    openFT(side, STATE.selectedPlayer.number, 2);
-    return;
-  }
-
-  addScore(side, STATE.selectedPlayer.number, pts, x, y);
-  showZoneFlash(pts, x / svgW, y / svgH, svg.getBoundingClientRect());
-}
-
-/**
- * Returns: 3 = three pointer, 2 = two pointer, 1 = trigger free throws, 0 = ignore
- * Zone logic based on left/right half and paint area
- */
-function detectZone(x, y, side) {
-  const cx = 260; // center x
-
-  // Which half is the player attacking?
-  // Local attacks LEFT basket (x < 260), Visitor attacks RIGHT basket (x > 260)
-  // But we let them tap anywhere on their attacking half
-
-  const inLeftHalf  = x < cx;
-  const inRightHalf = x >= cx;
-
-  // LOCAL attacks left basket
-  if (side === 'local') {
-    if (!inLeftHalf) {
-      // Tapped on visitor's half → 2pt midrange from own half
-      return 2;
-    }
-    // Left half
-    // Paint zone: x: 10-122, y: 73-197
-    const inPaint = x >= 10 && x <= 122 && y >= 73 && y <= 197;
-    if (inPaint) return 2;
-
-    // 3pt zone: outside the arc (approx: if x < 48 and y < 67 or y > 203, corners)
-    // Arc center ~(10+95=105, 135), radius ~95 → distance from basket
-    const distFromBasket = Math.sqrt(Math.pow(x - 10, 2) + Math.pow(y - 135, 2));
-    // Beyond arc: roughly dist > 95 from basket OR in corners
-    if (y < 67 || y > 203) return 3; // corners
-    if (distFromBasket > 112) return 3;
-    // Between paint and arc = 2pt mid
-    return 2;
-  }
-
-  // VISITOR attacks right basket
-  if (side === 'visitor') {
-    if (!inRightHalf) {
-      return 2;
-    }
-    // Paint zone: x: 398-510, y: 73-197
-    const inPaint = x >= 398 && x <= 510 && y >= 73 && y <= 197;
-    if (inPaint) return 2;
-
-    const distFromBasket = Math.sqrt(Math.pow(x - 510, 2) + Math.pow(y - 135, 2));
-    if (y < 67 || y > 203) return 3;
-    if (distFromBasket > 112) return 3;
-    return 2;
-  }
-
-  return 2;
-}
-
-// ═══════════════════════════════════════════════════════
-//  ADD SCORE
-// ═══════════════════════════════════════════════════════
-function addScore(side, playerNum, pts, svgX, svgY) {
-  const team = STATE[side];
-  const player = team.players.find(p => p.number === playerNum);
-  if (!player) return;
-
-  player.points += pts;
-  team.score    += pts;
-
-  STATE.events.push({
-    type: 'score', side, playerNum, pts,
-    ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period,
-  });
-
-  renderScores();
-  renderQuinteto('local');
-  renderQuinteto('visitor');
-
-  // Show popup on court
-  showScorePopup(pts, svgX, svgY);
-}
-
-function showScorePopup(pts, svgX, svgY) {
-  const svg = document.getElementById('court-svg');
-  const rect = svg.getBoundingClientRect();
-  const layer = document.getElementById('popup-layer');
-
-  const el = document.createElement('div');
-  el.className = 'score-popup';
-  el.textContent = '+' + pts;
-  el.style.color = pts === 3 ? '#22c55e' : pts === 2 ? '#fbbf24' : '#60a5fa';
-  el.style.left  = (svgX / 520 * rect.width) + 'px';
-  el.style.top   = (svgY / 270 * rect.height) + 'px';
-  layer.appendChild(el);
-  setTimeout(() => el.remove(), 950);
-}
-
-function showZoneFlash(pts, rx, ry, rect) { /* visual only, handled by popup */ }
-
-// ═══════════════════════════════════════════════════════
-//  SCORES
-// ═══════════════════════════════════════════════════════
-function renderScores() {
-  ['local','visitor'].forEach(side => {
-    const sc = STATE[side].score;
-    document.getElementById('sb-' + side + '-score').textContent  = sc;
-    document.getElementById('col-' + side + '-score').textContent = sc;
-  });
-  renderFouls();
-}
-
-function renderFouls() {
-  ['local','visitor'].forEach(side => {
-    const f = STATE[side].fouls;
-    document.getElementById('fouls-' + side + '-num').textContent = f;
-    const bonus = document.getElementById('bonus-' + side);
-    bonus.style.display = f >= 7 ? 'inline' : 'none';
-  });
+  switchTab('partido');
 }
 
 // ═══════════════════════════════════════════════════════
 //  CLOCK
 // ═══════════════════════════════════════════════════════
-function renderClock() {
-  const { min, sec } = STATE.clock;
-  const el = document.getElementById('sb-clock');
-  el.textContent = pad(min) + ':' + pad(sec);
-  el.className = 'sb-clock';
-  if (min === 0 && sec <= 30) el.classList.add('danger');
-  else if (min < 2) el.classList.add('warn');
-  document.getElementById('sb-period').textContent = getPeriodLabel();
-}
-
-function pad(n) { return String(n).padStart(2, '0'); }
-
-function getPeriodLabel() {
-  const labels = ['1° PERÍODO','2° PERÍODO','3° PERÍODO','4° PERÍODO','PRÓRROGA'];
-  return labels[Math.min(STATE.period - 1, 4)];
-}
+function pad(n) { return String(n).padStart(2,'0'); }
 
 function toggleClock() {
   if (STATE.running) {
-    clearInterval(STATE.clockInterval);
-    STATE.running = false;
+    clearInterval(STATE.clockInterval); STATE.running = false;
     document.getElementById('btn-playpause').textContent = '▶ INICIAR';
-    document.getElementById('btn-playpause').className = 'btn-clock btn-play';
+    document.getElementById('btn-playpause').className = 'tcbtn play';
   } else {
     STATE.running = true;
     document.getElementById('btn-playpause').textContent = '⏸ PAUSA';
-    document.getElementById('btn-playpause').className = 'btn-clock btn-pause';
+    document.getElementById('btn-playpause').className = 'tcbtn pause';
     STATE.clockInterval = setInterval(() => {
       if (STATE.clock.min === 0 && STATE.clock.sec === 0) {
-        clearInterval(STATE.clockInterval);
-        STATE.running = false;
+        clearInterval(STATE.clockInterval); STATE.running = false;
         document.getElementById('btn-playpause').textContent = '▶ INICIAR';
-        document.getElementById('btn-playpause').className = 'btn-clock btn-play';
+        document.getElementById('btn-playpause').className = 'tcbtn play';
         return;
       }
-      if (STATE.clock.sec === 0) {
-        STATE.clock.min--;
-        STATE.clock.sec = 59;
-      } else {
-        STATE.clock.sec--;
-      }
+      if (STATE.clock.sec === 0) { STATE.clock.min--; STATE.clock.sec = 59; }
+      else STATE.clock.sec--;
       renderClock();
     }, 1000);
   }
 }
 
 function resetClock() {
-  clearInterval(STATE.clockInterval);
-  STATE.running = false;
+  clearInterval(STATE.clockInterval); STATE.running = false;
   STATE.clock = { min: STATE.periodMins, sec: 0 };
   document.getElementById('btn-playpause').textContent = '▶ INICIAR';
-  document.getElementById('btn-playpause').className = 'btn-clock btn-play';
+  document.getElementById('btn-playpause').className = 'tcbtn play';
   renderClock();
 }
 
 function nextPeriod() {
   if (STATE.period >= 4) return;
-  clearInterval(STATE.clockInterval);
-  STATE.running = false;
-  STATE.period++;
-  STATE.clock = { min: STATE.periodMins, sec: 0 };
-  STATE.local.fouls   = 0;
-  STATE.visitor.fouls = 0;
+  clearInterval(STATE.clockInterval); STATE.running = false;
+  STATE.period++; STATE.clock = { min: STATE.periodMins, sec: 0 };
+  STATE.local.fouls = 0; STATE.visitor.fouls = 0;
   document.getElementById('btn-playpause').textContent = '▶ INICIAR';
-  document.getElementById('btn-playpause').className = 'btn-clock btn-play';
-  renderClock();
-  renderFouls();
-  STATE.events.push({ type: 'period', period: STATE.period, ts: new Date().toLocaleTimeString('es-AR') });
+  document.getElementById('btn-playpause').className = 'tcbtn play';
+  STATE.events.push({ type:'period', period:STATE.period, ts:new Date().toLocaleTimeString('es-AR') });
+  renderClock(); renderFouls();
 }
 
 function finishGame() {
-  clearInterval(STATE.clockInterval);
-  STATE.running = false;
+  clearInterval(STATE.clockInterval); STATE.running = false; STATE.finished = true;
   const l = STATE.local, v = STATE.visitor;
-  alert(`🏁 PARTIDO FINALIZADO\n\n${l.name}: ${l.score} puntos\n${v.name}: ${v.score} puntos\n\n${l.score > v.score ? '🏆 Gana ' + l.name : v.score > l.score ? '🏆 Gana ' + v.name : '🤝 Empate'}`);
-}
+  saveCurrentGame();
+  alert(`🏁 PARTIDO FINALIZADO
 
-// ═══════════════════════════════════════════════════════
-//  FREE THROWS
-// ═══════════════════════════════════════════════════════
-function openFT(side, playerNum, shots) {
-  const player = STATE[side].players.find(p => p.number === playerNum);
-  STATE.ftData = { side, playerNum, shots: Array(shots).fill(null), total: shots };
+${l.name}: ${l.score} pts
+${v.name}: ${v.score} pts
 
-  document.getElementById('ft-player-name').textContent =
-    `${STATE[side].name} · Nº${playerNum} ${player ? player.name : ''}`;
-
-  renderFTAttempts();
-  document.getElementById('modal-ft').classList.add('open');
-}
-
-function renderFTAttempts() {
-  const container = document.getElementById('ft-attempts');
-  container.innerHTML = '';
-  STATE.ftData.shots.forEach((made, i) => {
-    const btn = document.createElement('div');
-    btn.className = 'ft-shot' + (made === true ? ' made' : made === false ? ' missed' : '');
-    btn.textContent = made === true ? '✓' : made === false ? '✗' : '?';
-    btn.onclick = () => {
-      STATE.ftData.shots[i] = STATE.ftData.shots[i] === true ? false : STATE.ftData.shots[i] === false ? null : true;
-      renderFTAttempts();
-    };
-    container.appendChild(btn);
-  });
-}
-
-function confirmFT() {
-  const { side, playerNum, shots } = STATE.ftData;
-  const made = shots.filter(s => s === true).length;
-  if (shots.some(s => s === null)) { alert('Marcá el resultado de cada tiro.'); return; }
-  if (made > 0) addScore(side, playerNum, made, 260, 135);
-  closeFT();
-}
-
-function closeFT() {
-  document.getElementById('modal-ft').classList.remove('open');
-  STATE.ftData = { side: null, playerNum: null, shots: [], total: 0 };
-}
-
-// ═══════════════════════════════════════════════════════
-//  FOUL MODAL
-// ═══════════════════════════════════════════════════════
-function openFoulModal() {
-  if (!STATE.selectedPlayer) return;
-  const { side, number } = STATE.selectedPlayer;
-  const player = STATE[side].players.find(p => p.number === number);
-  STATE.foulTarget = { side, number };
-  document.getElementById('foul-who').textContent =
-    `${STATE[side].name} · Nº${number} ${player ? player.name : ''}`;
-  document.getElementById('modal-foul').classList.add('open');
-}
-
-function registerFoul(type) {
-  const { side, number } = STATE.foulTarget;
-  const team   = STATE[side];
-  const player = team.players.find(p => p.number === number);
-  if (!player) return;
-
-  player.fouls++;
-  team.fouls++;
-
-  STATE.events.push({ type: 'foul', foulType: type, side, playerNum: number, ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period });
-
-  closeFoul();
-  renderFouls();
-  renderQuinteto('local');
-  renderQuinteto('visitor');
-
-  // Open FT if needed
-  if (type === 'ft1') openFT(side === 'local' ? 'visitor' : 'local', null, 1);
-  if (type === 'ft2') openFT(side === 'local' ? 'visitor' : 'local', null, 2);
-  if (type === 'ft3') openFT(side === 'local' ? 'visitor' : 'local', null, 3);
-}
-
-function openFoulFromButton(side) {
-  // Open foul modal for team-level foul without player
-  STATE.foulTarget = { side, number: null };
-  document.getElementById('foul-who').textContent = `Equipo ${STATE[side].name}`;
-  document.getElementById('modal-foul').classList.add('open');
-}
-
-function closeFoul() {
-  document.getElementById('modal-foul').classList.remove('open');
+${l.score>v.score?'🏆 Gana '+l.name:v.score>l.score?'🏆 Gana '+v.name:'🤝 Empate'}`);
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1276,59 +1052,38 @@ function openBanco(side) {
   STATE.bancoSide = side;
   const team = STATE[side];
   const bench = team.players.filter(p => !p.inCourt);
-
-  document.getElementById('banco-title').textContent =
-    `👥 Banco ${team.name}`;
-  document.getElementById('banco-sub').textContent =
-    bench.length === 0
-      ? 'No hay jugadores en el banco.'
-      : 'Tocá el jugador que entra al quinteto';
-
+  document.getElementById('banco-title').textContent = `👥 Banco ${team.name}`;
+  document.getElementById('banco-sub').textContent = bench.length ? 'Tocá el jugador que ENTRA' : 'No hay jugadores en el banco.';
   const list = document.getElementById('bench-list');
   list.innerHTML = '';
-
-  if (bench.length === 0) {
-    list.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:10px 0">Todos los jugadores ya están en cancha.</p>';
-  } else {
-    bench.forEach(p => {
-      const row = document.createElement('div');
-      row.className = 'bench-player';
-      row.innerHTML = `
-        <div class="bench-num" style="background:${team.color}">${p.number}</div>
-        <div class="bench-name">${p.name || 'Nº' + p.number}</div>
-        <div class="bench-stats">${p.points} pts · ${p.fouls} F</div>
-      `;
-      row.onclick = () => benched_playerSelected(p.number);
-      list.appendChild(row);
-    });
-  }
-
+  bench.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'bench-player';
+    row.innerHTML = `<div class="bench-num" style="background:${team.color}">${p.number}</div>
+      <div class="bench-name">${p.name||'Nº'+p.number}</div>
+      <div class="bench-stats">${p.points}pts · ${p.fouls}F</div>`;
+    row.onclick = () => selectBenchPlayer(p.number);
+    list.appendChild(row);
+  });
   document.getElementById('modal-banco').classList.add('open');
 }
 
-let awaitingPlayerOut = false;
-
-function benched_playerSelected(incomingNum) {
-  // Now ask who goes OUT
+function selectBenchPlayer(inNum) {
   const side = STATE.bancoSide;
   const team = STATE[side];
-  const bench = document.getElementById('bench-list');
-  const inCourt = team.players.filter(p => p.inCourt);
-
-  document.getElementById('banco-sub').textContent = 'Ahora tocá quién SALE del quinteto';
-  bench.innerHTML = '';
-
-  inCourt.forEach(p => {
+  const onCourt = team.players.filter(p => p.inCourt);
+  document.getElementById('banco-sub').textContent = 'Ahora tocá quién SALE';
+  const list = document.getElementById('bench-list');
+  list.innerHTML = '';
+  onCourt.forEach(p => {
     const row = document.createElement('div');
     row.className = 'bench-player';
     row.style.borderColor = '#ef4444';
-    row.innerHTML = `
-      <div class="bench-num" style="background:#ef4444">${p.number}</div>
-      <div class="bench-name">${p.name || 'Nº' + p.number}</div>
-      <div class="bench-stats">${p.points} pts · ${p.fouls} F — <span style="color:#ef4444">SALE</span></div>
-    `;
-    row.onclick = () => doSubstitution(incomingNum, p.number);
-    bench.appendChild(row);
+    row.innerHTML = `<div class="bench-num" style="background:#ef4444">${p.number}</div>
+      <div class="bench-name">${p.name||'Nº'+p.number}</div>
+      <div class="bench-stats" style="color:#ef4444">SALE</div>`;
+    row.onclick = () => doSubstitution(inNum, p.number);
+    list.appendChild(row);
   });
 }
 
@@ -1337,14 +1092,11 @@ function doSubstitution(inNum, outNum) {
   const team = STATE[side];
   const pIn  = team.players.find(p => p.number === inNum);
   const pOut = team.players.find(p => p.number === outNum);
-  if (pIn) pIn.inCourt   = true;
+  if (pIn)  pIn.inCourt  = true;
   if (pOut) pOut.inCourt = false;
-
-  STATE.events.push({ type: 'sub', side, in: inNum, out: outNum, ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period });
-
+  STATE.events.push({ type:'sub', side, in:inNum, out:outNum, ts:new Date().toLocaleTimeString('es-AR'), period:STATE.period });
   closeBanco();
-  renderQuinteto('local');
-  renderQuinteto('visitor');
+  renderQuinteto('local'); renderQuinteto('visitor');
 }
 
 function closeBanco() {
@@ -1353,11 +1105,339 @@ function closeBanco() {
 }
 
 // ═══════════════════════════════════════════════════════
-//  SCREEN NAVIGATION
+//  FREE THROWS
+// ═══════════════════════════════════════════════════════
+function openFT(side, playerNum, shots) {
+  const n = shots || 2;
+  const player = side && playerNum ? STATE[side].players.find(p=>p.number===playerNum) : null;
+  STATE.ftData = { side, playerNum, shots: Array(n).fill(null), total: n };
+
+  // Header
+  const nameEl = document.getElementById('ft-player-name');
+  if (nameEl) {
+    if (side && playerNum) {
+      const team = STATE[side];
+      nameEl.textContent = `${team.name} · Nº${playerNum} ${player?.name||''}`;
+      nameEl.style.color = team.color;
+    } else if (side) {
+      nameEl.textContent = `Tiros libres — ${STATE[side].name}`;
+      nameEl.style.color = STATE[side].color;
+    } else {
+      nameEl.textContent = 'Tiros libres';
+      nameEl.style.color = '';
+    }
+  }
+
+  // Set count buttons active state
+  [1,2,3].forEach(i => {
+    const b = document.getElementById('ftc-' + i);
+    if (b) b.classList.toggle('active', i === n);
+  });
+
+  renderFTShots();
+  document.getElementById('modal-ft').classList.add('open');
+}
+
+function renderFTAttempts() {
+  const c = document.getElementById('ft-attempts');
+  c.innerHTML = '';
+  STATE.ftData.shots.forEach((made, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'ft-shot' + (made===true?' made':made===false?' missed':'');
+    btn.textContent = made===true?'✓':made===false?'✗':'?';
+    btn.onclick = () => { STATE.ftData.shots[i] = made===true?false:made===false?null:true; renderFTAttempts(); };
+    c.appendChild(btn);
+  });
+}
+
+function confirmFT() {
+  const { side, playerNum, shots } = STATE.ftData;
+  if (shots.some(s => s === null)) { alert('Marcá el resultado de cada tiro libre.'); return; }
+  const made   = shots.filter(s => s === true).length;
+  const missed = shots.filter(s => s === false).length;
+
+  // Log each shot as event
+  shots.forEach((result, i) => {
+    STATE.events.push({
+      type: 'ft', shotNum: i+1, result: result ? 'made' : 'missed',
+      side, playerNum: playerNum || null,
+      ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period
+    });
+  });
+
+  if (made > 0) {
+    if (side && playerNum) {
+      addScore(side, playerNum, made, 300, 160);
+    } else if (side) {
+      STATE[side].score += made;
+      renderScores();
+    }
+  }
+  showToast(`🎯 Tiros libres: ${made} convertido${made!==1?'s':''}, ${missed} errado${missed!==1?'s':''}`);
+  closeFT();
+}
+
+function closeFT() {
+  document.getElementById('modal-ft').classList.remove('open');
+  STATE.ftData = { side:null, playerNum:null, shots:[], total:0 };
+}
+
+// ═══════════════════════════════════════════════════════
+//  FOULS
+// ═══════════════════════════════════════════════════════
+function openFoulModal() {
+  // If a player is selected → Falta Personal direct (no modal)
+  if (STATE.selectedPlayer) {
+    const { side, number } = STATE.selectedPlayer;
+    const team = STATE[side];
+    const player = team.players.find(p => p.number === number);
+    player.fouls++;
+    team.fouls++;
+    STATE.events.push({
+      type: 'foul', foulType: 'personal', side, playerNum: number,
+      playerName: player?.name || '', teamName: team.name,
+      ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period
+    });
+    renderFouls();
+    renderQuinteto('local');
+    renderQuinteto('visitor');
+    showToast(`⚠️ Falta personal — ${team.name} Nº${number} ${player?.name||''} (${player.fouls} faltas)`);
+    return;
+  }
+  // No player selected → open Otras Faltas modal
+  openOtrasFaltas();
+}
+
+function openOtrasFaltas() {
+  document.getElementById('modal-otras-faltas').classList.add('open');
+}
+
+function registerFoul(type) {
+  const { side, number } = STATE.foulTarget;
+  const team = STATE[side];
+  const player = team.players.find(p=>p.number===number);
+  if (player) player.fouls++;
+  team.fouls++;
+  STATE.events.push({ type:'foul', foulType:type, side, playerNum:number, ts:new Date().toLocaleTimeString('es-AR'), period:STATE.period });
+  closeFoul(); renderFouls(); renderQuinteto('local'); renderQuinteto('visitor');
+  const oppSide = side === 'local' ? 'visitor' : 'local';
+  if (type==='ft1') openFT(oppSide, null, 1);
+  else if (type==='ft2') openFT(oppSide, null, 2);
+  else if (type==='ft3') openFT(oppSide, null, 3);
+}
+
+function closeFoul() { document.getElementById('modal-foul').classList.remove('open'); }
+
+// ═══════════════════════════════════════════════════════
+//  OTRAS FALTAS
+// ═══════════════════════════════════════════════════════
+let _otraFaltaSelected = null;
+let _otraFaltaSide = null;
+
+function selectOtraFalta(type) {
+  _otraFaltaSelected = type;
+  // Update radio visuals
+  const types = ['tecnica','antideportiva','tecnica-coach','tecnica-banquillo','descalificante'];
+  types.forEach(t => {
+    const r = document.getElementById('radio-' + t);
+    const opt = r?.closest('.otras-opt');
+    if (r) r.classList.toggle('selected', t === type);
+    if (opt) opt.classList.toggle('selected', t === type);
+  });
+  // Show team selector
+  const teamSel = document.getElementById('otras-team-sel');
+  if (teamSel) teamSel.style.display = 'block';
+  // Color the team buttons
+  const btnL = document.getElementById('otras-btn-local');
+  const btnV = document.getElementById('otras-btn-visitor');
+  if (btnL) { btnL.style.background = STATE.local.color; btnL.style.color = '#fff'; }
+  if (btnV) { btnV.style.background = STATE.visitor.color; btnV.style.color = '#fff'; }
+}
+
+function confirmOtraFalta(side) {
+  if (!_otraFaltaSelected) return;
+  _otraFaltaSide = side;
+
+  const labels = {
+    'tecnica': 'Técnica', 'antideportiva': 'Antideportiva',
+    'tecnica-coach': 'Técnica Banquillo C', 'tecnica-banquillo': 'Técnica Banquillo B',
+    'descalificante': 'Descalificante'
+  };
+
+  const needsPlayer = ['tecnica', 'antideportiva', 'descalificante'];
+
+  // Close the otras-faltas modal first
+  document.getElementById('modal-otras-faltas').classList.remove('open');
+
+  if (needsPlayer.includes(_otraFaltaSelected)) {
+    const team = STATE[side];
+
+    // Populate the separate player picker modal
+    const title    = document.getElementById('otras-player-title');
+    const subtitle = document.getElementById('otras-player-subtitle');
+    const list     = document.getElementById('otras-player-list');
+
+    title.textContent    = labels[_otraFaltaSelected];
+    title.style.color    = team.color;
+    subtitle.textContent = `${team.name} — seleccioná quién cometió la falta`;
+    list.innerHTML       = '';
+
+    team.players.forEach(p => {
+      const fouled = p.fouls >= 5;
+      const btn = document.createElement('div');
+      btn.className = 'otras-player-btn';
+      btn.style.opacity = (fouled && _otraFaltaSelected !== 'descalificante') ? '0.35' : '1';
+      btn.innerHTML = `
+        <div class="otras-player-num" style="background:${fouled ? '#555' : team.color}">${p.number}</div>
+        <div class="otras-player-info">
+          <div class="otras-player-name">${p.name || 'Nº' + p.number}</div>
+          <div class="otras-player-sub">
+            ${p.inCourt ? '<span style="color:#22c55e">● En cancha</span>' : '<span style="color:var(--muted)">○ Banco</span>'}
+            &nbsp;·&nbsp; ${p.fouls} faltas personales
+          </div>
+        </div>
+        ${fouled ? '<span style="font-size:9px;color:#ef4444;font-weight:800;flex-shrink:0">FOUL OUT</span>' : ''}`;
+      btn.onclick = () => {
+        if (fouled && _otraFaltaSelected !== 'descalificante') return;
+        closeOtrasPlayer();
+        finishOtraFalta(p.number);
+      };
+      list.appendChild(btn);
+    });
+
+    // Open the player picker modal
+    document.getElementById('modal-otras-player').classList.add('open');
+  } else {
+    // Banquillo / coach → no player needed
+    finishOtraFalta(null);
+  }
+}
+
+function closeOtrasPlayer() {
+  document.getElementById('modal-otras-player').classList.remove('open');
+}
+
+function finishOtraFalta(playerNum) {
+  if (!_otraFaltaSelected || !_otraFaltaSide) return;
+  const side    = _otraFaltaSide;
+  const team    = STATE[side];
+  const oppSide = side === 'local' ? 'visitor' : 'local';
+
+  const labels = {
+    'tecnica': 'Técnica', 'antideportiva': 'Antideportiva',
+    'tecnica-coach': 'Técnica Banquillo C', 'tecnica-banquillo': 'Técnica Banquillo B',
+    'descalificante': 'Descalificante'
+  };
+
+  // Count team foul
+  team.fouls++;
+
+  // If player selected, count personal foul too
+  if (playerNum !== null) {
+    const player = team.players.find(p => p.number === playerNum);
+    if (player) {
+      player.fouls++;
+      // Descalificante → mark as fouled out
+      if (_otraFaltaSelected === 'descalificante') {
+        player.fouls = 5; // force foul out
+      }
+    }
+  }
+
+  const player = playerNum ? team.players.find(p => p.number === playerNum) : null;
+
+  STATE.events.push({
+    type: 'foul',
+    foulType: _otraFaltaSelected,
+    side,
+    teamName: team.name,
+    playerNum: playerNum || null,
+    playerName: player?.name || '',
+    ts: new Date().toLocaleTimeString('es-AR'),
+    period: STATE.period
+  });
+
+  renderFouls();
+  renderQuinteto('local');
+  renderQuinteto('visitor');
+  closeOtrasFaltas();
+
+  const pLabel = player ? ` · Nº${playerNum} ${player.name || ''}` : '';
+  showToast(`⚠️ ${labels[_otraFaltaSelected]} — ${team.name}${pLabel}`);
+
+  // Free throws for opponent
+  if (['tecnica', 'tecnica-coach', 'tecnica-banquillo', 'antideportiva'].includes(_otraFaltaSelected)) {
+    setTimeout(() => openFT(oppSide, null, 2), 350);
+  }
+
+  _otraFaltaSelected = null;
+  _otraFaltaSide     = null;
+}
+
+function closeOtrasFaltas() {
+  document.getElementById('modal-otras-faltas').classList.remove('open');
+  _otraFaltaSelected = null;
+  _otraFaltaSide     = null;
+  const teamSel = document.getElementById('otras-team-sel');
+  if (teamSel) teamSel.style.display = 'none';
+  ['tecnica','antideportiva','tecnica-coach','tecnica-banquillo','descalificante'].forEach(t => {
+    const r   = document.getElementById('radio-' + t);
+    const opt = r?.closest('.otras-opt');
+    if (r)   r.classList.remove('selected');
+    if (opt) opt.classList.remove('selected');
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+//  FREE THROWS — new GES-style logic
+// ═══════════════════════════════════════════════════════
+function setFTcount(n) {
+  STATE.ftData.total = n;
+  STATE.ftData.shots = Array(n).fill(null);
+  // Update count buttons
+  [1,2,3].forEach(i => {
+    const b = document.getElementById('ftc-' + i);
+    if (b) b.classList.toggle('active', i === n);
+  });
+  renderFTShots();
+}
+
+function renderFTAttempts() { renderFTShots(); } // alias
+
+function renderFTShots() {
+  const wrap = document.getElementById('ft-shots-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  STATE.ftData.shots.forEach((made, i) => {
+    const row = document.createElement('div');
+    row.className = 'ft-shot-row';
+
+    const resultClass = made === true ? 'made-txt' : made === false ? 'missed-txt' : '';
+    const resultText  = made === true ? '✓ CONVERTIDO' : made === false ? '✗ ERRADO' : '— Sin registrar';
+
+    row.innerHTML = `
+      <div class="ft-shot-label">Tiro ${i+1}:</div>
+      <div class="ft-shot-btns">
+        <div class="ft-shot-btn ${made===true?'made':''}" onclick="setFTshot(${i}, true)" title="Convertido">✓</div>
+        <div class="ft-shot-btn ${made===false?'missed':''}" onclick="setFTshot(${i}, false)" title="Errado">✗</div>
+      </div>
+      <div class="ft-shot-result ${resultClass}">${resultText}</div>`;
+    wrap.appendChild(row);
+  });
+}
+
+function setFTshot(idx, made) {
+  // Toggle: if already that value, clear it
+  STATE.ftData.shots[idx] = STATE.ftData.shots[idx] === made ? null : made;
+  renderFTShots();
+}
+
+// ═══════════════════════════════════════════════════════
+//  SCREEN NAV
 // ═══════════════════════════════════════════════════════
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + id).classList.add('active');
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1367,269 +1447,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('cfg-date').value = new Date().toLocaleDateString('es-AR');
   buildSetupPlayers();
 });
-
-
-
-// ═══════════════════════════════════════════════════════
-//  SAVE / LOAD GAMES (localStorage)
-// ═══════════════════════════════════════════════════════
-function getSavedGames() {
-  try { return JSON.parse(localStorage.getItem('cua-games') || '[]'); } catch { return []; }
-}
-function setSavedGames(list) {
-  try { localStorage.setItem('cua-games', JSON.stringify(list)); } catch {}
-}
-
-function saveCurrentGame() {
-  if (!STATE.gameStarted) { alert('Iniciá un partido primero.'); return; }
-  const snapshot = {
-    id: STATE.gameId,
-    date: STATE.date,
-    time: STATE.startTime,
-    category: STATE.category,
-    venue: STATE.venue,
-    period: STATE.period,
-    finished: STATE.finished || false,
-    local: {
-      name: STATE.local.name, color: STATE.local.color, score: STATE.local.score,
-      fouls: STATE.local.fouls, coach: STATE.local.coach,
-      players: STATE.local.players.map(p => ({...p})),
-    },
-    visitor: {
-      name: STATE.visitor.name, color: STATE.visitor.color, score: STATE.visitor.score,
-      fouls: STATE.visitor.fouls, coach: STATE.visitor.coach,
-      players: STATE.visitor.players.map(p => ({...p})),
-    },
-    events: [...STATE.events],
-  };
-  const list = getSavedGames().filter(g => g.id !== snapshot.id);
-  list.push(snapshot);
-  setSavedGames(list);
-  // Brief visual feedback
-  const btn = document.querySelector('.tab-action.save-btn');
-  const orig = btn.textContent;
-  btn.textContent = '✅';
-  btn.style.color = '#fff';
-  setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1200);
-}
-
-function startNewGame() {
-  if (STATE.gameStarted && !STATE.finished) {
-    if (!confirm('¿Guardar el partido actual antes de crear uno nuevo?')) return;
-    saveCurrentGame();
-  }
-  showScreen('setup');
-}
-
-// ═══════════════════════════════════════════════════════
-//  RENDER HISTORIAL
-// ═══════════════════════════════════════════════════════
-function renderHistorial() {
-  const container = document.getElementById('hist-content');
-  const games = getSavedGames().reverse();
-  if (!games.length) {
-    container.innerHTML = `
-      <div class="hist-empty">
-        <div class="hist-empty-icon">📋</div>
-        <div style="font-size:14px;font-weight:600;">Sin partidos guardados</div>
-        <div style="font-size:12px;">Guardá el partido actual con 💾</div>
-      </div>`;
-    return;
-  }
-  container.innerHTML = '';
-  games.forEach(g => {
-    const card = document.createElement('div');
-    card.className = 'hist-card';
-    const winner = g.local.score > g.visitor.score ? g.local.name
-                 : g.visitor.score > g.local.score ? g.visitor.name : null;
-    card.innerHTML = `
-      <div class="hist-score">${g.local.score}<span style="color:var(--muted);font-size:16px;margin:0 4px">–</span>${g.visitor.score}</div>
-      <div class="hist-info">
-        <div class="hist-teams">${g.local.name} vs ${g.visitor.name}</div>
-        <div class="hist-meta">
-          ${g.category} · ${g.date || ''} · ${g.venue || ''}
-          ${winner ? ' · 🏆 ' + winner : ''}
-        </div>
-      </div>
-      <span class="hist-badge ${g.finished ? 'done' : 'live'}">${g.finished ? '✅ Finalizado' : '⏸ En curso'}</span>
-      <div class="hist-actions">
-        <button class="hist-btn load" onclick="loadGame('${g.id}')">Cargar</button>
-        <button class="hist-btn del" onclick="deleteGame('${g.id}')">🗑</button>
-      </div>`;
-    container.appendChild(card);
-  });
-}
-
-function loadGame(id) {
-  const g = getSavedGames().find(g => g.id == id);
-  if (!g) return;
-  // Restore state
-  STATE.gameId   = g.id;
-  STATE.date     = g.date;
-  STATE.startTime= g.time;
-  STATE.category = g.category;
-  STATE.venue    = g.venue;
-  STATE.period   = g.period;
-  STATE.finished = g.finished;
-  STATE.local    = { ...g.local, players: g.local.players.map(p=>({...p})) };
-  STATE.visitor  = { ...g.visitor, players: g.visitor.players.map(p=>({...p})) };
-  STATE.events   = [...g.events];
-  STATE.gameStarted = true;
-  STATE.clock    = { min: STATE.periodMins || 10, sec: 0 };
-
-  document.documentElement.style.setProperty('--local',   STATE.local.color);
-  document.documentElement.style.setProperty('--visitor', STATE.visitor.color);
-  document.getElementById('zone-local-paint').setAttribute('fill', STATE.local.color + '33');
-  document.getElementById('zone-visitor-paint').setAttribute('fill', STATE.visitor.color + '33');
-
-  initGameScreen();
-  showScreen('game');
-  switchTab('partido');
-}
-
-function deleteGame(id) {
-  if (!confirm('¿Eliminar este partido?')) return;
-  setSavedGames(getSavedGames().filter(g => g.id != id));
-  renderHistorial();
-}
-
-// ═══════════════════════════════════════════════════════
-//  RENDER STATS
-// ═══════════════════════════════════════════════════════
-function renderStats() {
-  const container = document.getElementById('stats-content');
-  container.innerHTML = '';
-
-  ['local','visitor'].forEach(side => {
-    const team = STATE[side];
-    const active = team.players.filter(p => p.name || p.points > 0 || p.fouls > 0);
-    const topScorer = [...team.players].sort((a,b) => b.points - a.points)[0];
-
-    const card = document.createElement('div');
-    card.className = 'stats-card';
-    card.innerHTML = `
-      <div class="stats-card-header" style="background:${team.color}22;border-bottom:1px solid ${team.color}44">
-        <div>
-          <div class="stats-card-header team-title" style="color:${team.color}">${team.name}</div>
-          ${team.coach ? `<div style="font-size:9px;color:var(--muted)">DT: ${team.coach}</div>` : ''}
-        </div>
-        <div class="stats-card-header team-total">${team.score}</div>
-      </div>
-      <table class="stats-table">
-        <thead>
-          <tr>
-            <th class="num-cell">#</th>
-            <th>Jugador</th>
-            <th class="right">PTS</th>
-            <th class="right">F</th>
-            <th class="right">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${team.players.map(p => `
-            <tr class="${p.fouls >= 5 ? 'fouled' : ''}">
-              <td><span class="num-bubble" style="background:${p.fouls >= 5 ? '#ef4444' : team.color}">${p.number}</span></td>
-              <td style="color:${p.fouls>=5?'var(--muted)':'var(--text)'}">${p.name || 'Nº'+p.number}</td>
-              <td class="pts">${p.points}</td>
-              <td class="fouls ${p.fouls >= 4 ? 'danger' : ''}">${p.fouls}</td>
-              <td style="font-size:9px;text-align:right;color:var(--muted)">
-                ${p.inCourt ? '<span style="color:#22c55e">● CANCHA</span>' : '<span>○ Banco</span>'}
-                ${p.fouls >= 5 ? '<span style="color:#ef4444"> ✗ FOUL</span>' : ''}
-              </td>
-            </tr>`).join('')}
-        </tbody>
-      </table>
-      <div class="stats-fouls-row">
-        <span style="font-size:9px;color:var(--muted);margin-right:6px">F.EQUIPO:</span>
-        ${Array.from({length:10},(_,i) => `<div class="stats-fouls-dot" style="${i<team.fouls?'background:'+team.color+';border-color:'+team.color:''}"></div>`).join('')}
-        ${team.fouls >= 7 ? '<span style="font-size:9px;color:#ef4444;font-weight:700;margin-left:6px">⚡ BONUS</span>' : ''}
-      </div>`;
-    container.appendChild(card);
-  });
-
-  // Summary row
-  const summary = document.createElement('div');
-  summary.className = 'stats-summary';
-  const totalPts = STATE.local.score + STATE.visitor.score;
-  const totalFouls = STATE.local.fouls + STATE.visitor.fouls;
-  const localTopScorer = [...STATE.local.players].sort((a,b)=>b.points-a.points)[0];
-  const visitorTopScorer = [...STATE.visitor.players].sort((a,b)=>b.points-a.points)[0];
-  summary.innerHTML = `
-    <div class="stat-kpi">
-      <div class="stat-kpi-val">${STATE.period}°</div>
-      <div class="stat-kpi-label">PERÍODO ACTUAL</div>
-    </div>
-    <div class="stat-kpi">
-      <div class="stat-kpi-val">${totalPts}</div>
-      <div class="stat-kpi-label">PUNTOS TOTALES</div>
-    </div>
-    <div class="stat-kpi">
-      <div class="stat-kpi-val">${totalFouls}</div>
-      <div class="stat-kpi-label">FALTAS TOTALES</div>
-    </div>
-    <div class="stat-kpi">
-      <div class="stat-kpi-val" style="font-size:16px">
-        ${localTopScorer && localTopScorer.points > 0 ? 'Nº'+localTopScorer.number+' · '+localTopScorer.points : '—'}
-      </div>
-      <div class="stat-kpi-label">GOLEADOR LOCAL</div>
-    </div>`;
-  container.appendChild(summary);
-}
-
-// ═══════════════════════════════════════════════════════
-//  RENDER EVENTOS
-// ═══════════════════════════════════════════════════════
-function renderEventos() {
-  const container = document.getElementById('eventos-content');
-  container.innerHTML = '';
-
-  if (!STATE.events.length) {
-    container.innerHTML = `
-      <div class="hist-empty" style="min-height:200px">
-        <div class="hist-empty-icon">📝</div>
-        <div style="font-size:14px;font-weight:600;">Sin eventos registrados</div>
-      </div>`;
-    return;
-  }
-
-  const icons = { score: '🏀', foul: '⚠️', sub: '🔄', period: '🔔', ft: '🎯' };
-
-  [...STATE.events].reverse().forEach(ev => {
-    const side = ev.side;
-    const team = side ? STATE[side] : null;
-    const player = team && ev.playerNum ? team.players.find(p => p.number === ev.playerNum) : null;
-
-    const row = document.createElement('div');
-    row.className = 'event-row ' + (side || 'period');
-
-    let desc = '', pts = '', icon = icons[ev.type] || '•';
-
-    if (ev.type === 'score') {
-      const pName = player ? (player.name || 'Nº'+player.number) : 'Equipo';
-      desc = `<span class="event-player" style="color:${team.color}">${team.name}</span> — ${pName}`;
-      pts = `<span class="event-pts" style="color:${ev.pts===3?'#22c55e':ev.pts===2?'#fbbf24':'#60a5fa'}">+${ev.pts}</span>`;
-    } else if (ev.type === 'foul') {
-      const pName = player ? (player.name || 'Nº'+player.number) : 'equipo';
-      desc = `<span class="event-player" style="color:${team.color}">${team.name}</span> — Falta ${pName}`;
-      pts = `<span class="event-pts" style="color:#ef4444;font-size:13px">${ev.foulType || ''}</span>`;
-    } else if (ev.type === 'sub') {
-      const teamS = STATE[ev.side];
-      const pIn  = teamS.players.find(p=>p.number===ev.in);
-      const pOut = teamS.players.find(p=>p.number===ev.out);
-      desc = `<span style="color:${teamS.color}">${teamS.name}</span> — Entra Nº${ev.in}${pIn?.name?' '+pIn.name:''} / Sale Nº${ev.out}${pOut?.name?' '+pOut.name:''}`;
-    } else if (ev.type === 'period') {
-      desc = `<span style="color:var(--muted)">Inicio ${ev.period}° Período</span>`;
-    }
-
-    row.innerHTML = `
-      <span class="event-icon">${icon}</span>
-      <span class="event-desc">${desc}</span>
-      ${pts}
-      <span class="event-time">${ev.ts || ''} · P${ev.period||1}</span>`;
-    container.appendChild(row);
-  });
-}
-
 
 
 // ── JERSEY SVG RENDERER ──────────────────────────────────
@@ -1707,13 +1524,19 @@ function renderFouls() {
 
 // ── SELECT PLAYER ─────────────────────────────────────────
 function selectPlayer(side, number) {
+  const faltaBtn = document.getElementById('btn-otras-faltas');
+
   if (STATE.selectedPlayer &&
       STATE.selectedPlayer.side === side &&
       STATE.selectedPlayer.number === number) {
+    // Deselect
     STATE.selectedPlayer = null;
     STATE.selectedSide = null;
     document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
     document.getElementById('sel-text').style.color = '';
+    // Restore button
+    faltaBtn.innerHTML = '<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS';
+    faltaBtn.classList.remove('falta-personal');
   } else {
     STATE.selectedPlayer = { side, number };
     STATE.selectedSide = side;
@@ -1722,6 +1545,9 @@ function selectPlayer(side, number) {
     const st = document.getElementById('sel-text');
     st.textContent = `${side==='local'?'🏠':'✈️'} Nº${number} ${p?.name||''} — tocá la cancha`;
     st.style.color = team.color;
+    // Change button to Falta Personal
+    faltaBtn.innerHTML = '<span class="bb-icon">🚨</span>FALTA<br>PERSONAL';
+    faltaBtn.classList.add('falta-personal');
   }
   renderQuinteto('local');
   renderQuinteto('visitor');
@@ -1729,6 +1555,7 @@ function selectPlayer(side, number) {
 
 // ── COURT CLICK ───────────────────────────────────────────
 function onCourtClick(e) {
+e.preventDefault();
   if (!STATE.selectedPlayer) {
     const st = document.getElementById('sel-text');
     st.style.color = '#ef4444';
@@ -1747,39 +1574,45 @@ function onCourtClick(e) {
   }
 }
 
-// ── DETECTAR ZONAS ──────────────
 function detectZone(x, y, side) {
-  const inCourt = x>=60 && x<=540 && y>=10 && y<=310;
+  // SVG viewBox: 600x320. Court: x 60-540, y 10-310. Center y=160.
+  //
+  // The 3pt arc in the SVG is:
+  //   Local:   "M 100 25 A 135 135 0 0 1 100 295"  → geometric center (100, 160), r=135
+  //   Visitor: "M 500 25 A 135 135 0 0 0 500 295"  → geometric center (500, 160), r=135
+  //
+  // Corner 3pt straight lines:
+  //   Local:   x=60→100 at y=25 (top) and y=295 (bottom)
+  //   Visitor: x=500→540 at y=25 (top) and y=295 (bottom)
+  //
+  // RULE: if the touch point is OUTSIDE the arc → 3pts. Inside → 2pts.
+
+  const inCourt = x >= 60 && x <= 540 && y >= 10 && y <= 310;
   if (!inCourt) return 0;
 
   if (side === 'local') {
-    const aroX = 79;
-    const aroY = 160;
+    // Arc center is (100, 160), radius 135
+    // Corner zone: strip between x=60-100, outside y=25 to y=295
+    // A point in corner is 3pt if it's in the straight-line zone (y<25 or y>295, x<=100)
 
-    // ESQUINAS (triple automático)
-    if (x <= 300 && (y < 25 || y > 295)) return 3;
+    const dx = x - 79;
+    const dy = y - 160;
+    const dist = Math.sqrt(dx*dx + dy*dy);
 
-    // DISTANCIA AL ARO
-    const dist = Math.sqrt((x - aroX)**2 + (y - aroY)**2);
+    // línea triple MÁS EXACTA
+    if (dist > 160) return 3;
 
-    // 🔴 AFUERA DEL ARCO = TRIPLE
-    if (dist > 135) return 3;
-
-    // 🟢 TODO LO DEMÁS = DOBLE
     return 2;
+
   } else {
-    const aroX = 521;
-    const aroY = 160;
+  const dx = x - 521;
+    const dy = y - 160;
+    const dist = Math.sqrt(dx*dx + dy*dy);
 
-    if (x >= 300 && (y < 25 || y > 295)) return 3;
-
-    const dist = Math.sqrt((x - aroX)**2 + (y - aroY)**2);
-
-    if (dist > 135) return 3;
-
+    if (dist > 160) return 3;
     return 2;
+    }
   }
-}
 
 // ── ADD SCORE ─────────────────────────────────────────────
 function addScore(side, playerNum, pts, svgX, svgY) {
@@ -1827,10 +1660,7 @@ function registerPerdida() {
     ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period });
   showToast('❌ Pérdida registrada - Nº' + number);
 }
-function openFTfromBar() {
-  if (!STATE.selectedPlayer) { alert('Seleccioná primero el jugador que va al tiro libre.'); return; }
-  openFT(STATE.selectedPlayer.side, STATE.selectedPlayer.number, 2);
-}
+
 
 function showToast(msg) {
   const t = document.createElement('div');
@@ -1854,11 +1684,22 @@ function initGameScreen() {
   // Paint zone colors
   document.getElementById('paint-local').setAttribute('fill', STATE.local.color + '33');
   document.getElementById('paint-visitor').setAttribute('fill', STATE.visitor.color + '33');
+
   // Court click
-  const svg = document.getElementById('court-svg');
-  svg.removeEventListener('click', onCourtClick);
-  svg.addEventListener('click', onCourtClick);
-  svg.addEventListener('contextmenu', e => { e.preventDefault(); openFoulModal(); });
+  // Court touch PRO (tablet + mouse)
+const svg = document.getElementById('court-svg');
+
+// eliminar click viejo
+svg.removeEventListener('click', onCourtClick);
+
+// NUEVO evento táctil universal
+svg.addEventListener('pointerdown', onCourtClick);
+
+// mantener click derecho (faltas)
+svg.addEventListener('contextmenu', e => { 
+  e.preventDefault(); 
+  openFoulModal(); 
+});
 
   renderQuinteto('local');
   renderQuinteto('visitor');
@@ -2038,16 +1879,260 @@ function renderEventos() {
 }
 
 // ── SCREEN NAV ────────────────────────────────────────────
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
-}
+
 
 // ── INIT ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('cfg-date').value = new Date().toLocaleDateString('es-AR');
   buildSetupPlayers();
 });
+
+// ── TIRO LIBRE desde barra inferior ─────────────────────
+function openFTfromBar() {
+  if (!STATE.selectedPlayer) {
+    // No player selected: ask which team first
+    openFTteamSelect();
+    return;
+  }
+  openFT(STATE.selectedPlayer.side, STATE.selectedPlayer.number, 2);
+}
+
+function openFTteamSelect() {
+  // Simple team picker before FT
+  const modal = document.getElementById('modal-ft-team');
+  if (modal) { modal.classList.add('open'); return; }
+  // Create on the fly if not present
+  const div = document.createElement('div');
+  div.className = 'modal-overlay open';
+  div.id = 'modal-ft-team';
+  div.innerHTML = `
+    <div class="modal-box" style="max-width:320px;text-align:center">
+      <div class="modal-title" style="color:var(--gold)">🎯 TIRO LIBRE</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:16px">¿Quién va al tiro libre?</div>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <button onclick="openFTforTeam('local')"
+          style="flex:1;padding:12px;border-radius:9px;border:none;background:${STATE.local.color};
+                 color:#fff;font-weight:800;font-size:14px;cursor:pointer;
+                 font-family:'Barlow Condensed',sans-serif">
+          🏠 ${STATE.local.name}
+        </button>
+        <button onclick="openFTforTeam('visitor')"
+          style="flex:1;padding:12px;border-radius:9px;border:none;background:${STATE.visitor.color};
+                 color:#fff;font-weight:800;font-size:14px;cursor:pointer;
+                 font-family:'Barlow Condensed',sans-serif">
+          ✈️ ${STATE.visitor.name}
+        </button>
+      </div>
+      <button onclick="document.getElementById('modal-ft-team').remove()"
+        class="modal-close">Cancelar</button>
+    </div>`;
+  document.body.appendChild(div);
+}
+
+function openFTforTeam(side) {
+  const teamModal = document.getElementById('modal-ft-team');
+  if (teamModal) teamModal.remove();
+
+  // Show players of that team to pick who shoots
+  const team = STATE[side];
+  const div = document.createElement('div');
+  div.className = 'modal-overlay open';
+  div.id = 'modal-ft-player';
+  const rows = team.players.map(p => `
+    <div class="bench-player" onclick="pickFTplayer('${side}',${p.number})"
+         style="border-left:3px solid ${team.color}">
+      <div class="bench-num" style="background:${team.color}">${p.number}</div>
+      <div class="bench-name">${p.name || 'Nº'+p.number}</div>
+      <div class="bench-stats">${p.inCourt?'● Cancha':'○ Banco'}</div>
+    </div>`).join('');
+  div.innerHTML = `
+    <div class="modal-box" style="max-width:360px">
+      <div class="modal-title" style="color:${team.color}">🎯 ${team.name} — ¿quién tira?</div>
+      <div style="max-height:260px;overflow-y:auto;margin-bottom:8px">${rows}</div>
+      <button onclick="document.getElementById('modal-ft-player').remove()"
+        class="modal-close">Cancelar</button>
+    </div>`;
+  document.body.appendChild(div);
+}
+
+function pickFTplayer(side, number) {
+  const modal = document.getElementById('modal-ft-player');
+  if (modal) modal.remove();
+  openFT(side, number, 2);
+}
+
+
+// ── HISTORIAL ESTILO GES ─────────────────────────────────
+function renderHistorial() {
+  const c = document.getElementById('hist-content');
+  if (!c) return;
+
+  // ── Saved games list ─────────────────────────────────
+  const savedGames = getSavedGames().reverse();
+
+  // ── Current game live events (most important) ────────
+  const eventsHtml = buildEventsTable(STATE.events, STATE);
+
+  c.innerHTML = '';
+
+  // Live events section
+  if (STATE.gameStarted && STATE.events.length > 0) {
+    const section = document.createElement('div');
+    section.innerHTML = `
+      <div style="padding:8px 12px 4px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;
+                     color:#fff;letter-spacing:1px">ACCIONES DEL PARTIDO</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="font-size:10px;color:var(--muted)">Período:</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;
+                       font-weight:800;color:#fff">${STATE.period}</span>
+        </div>
+      </div>
+      ${eventsHtml}`;
+    c.appendChild(section);
+  }
+
+  // Saved games section
+  if (savedGames.length > 0) {
+    const sep = document.createElement('div');
+    sep.innerHTML = `
+      <div style="padding:10px 12px 4px;display:flex;justify-content:space-between;align-items:center;
+                  border-top:1px solid #374151;margin-top:8px">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;
+                     font-weight:800;color:var(--muted);letter-spacing:1px">PARTIDOS GUARDADOS</span>
+        <button onclick="startNewGame()" style="padding:4px 10px;border-radius:6px;border:none;
+                background:#1d4ed8;color:#fff;font-weight:700;font-size:10px;cursor:pointer">+ Nuevo</button>
+      </div>`;
+    c.appendChild(sep);
+    savedGames.forEach(g => {
+      const card = document.createElement('div');
+      card.className = 'hist-card';
+      card.innerHTML = `
+        <div class="hist-score">${g.local.score}<span style="color:var(--muted);font-size:14px;margin:0 3px">–</span>${g.visitor.score}</div>
+        <div class="hist-info">
+          <div class="hist-teams">${g.local.name} vs ${g.visitor.name}</div>
+          <div class="hist-meta">${g.category||''} · ${g.date||''} · ${g.venue||''}</div>
+        </div>
+        <span class="hist-badge ${g.finished?'done':'live'}">${g.finished?'✅ Final':'⏸ En curso'}</span>
+        <div class="hist-actions">
+          <button class="hist-btn load" onclick="loadGame('${g.id}')">Cargar</button>
+          <button class="hist-btn del"  onclick="deleteGame('${g.id}')">🗑</button>
+        </div>`;
+      c.appendChild(card);
+    });
+  }
+
+  if (!STATE.gameStarted && !savedGames.length) {
+    c.innerHTML = '<div class="hist-empty"><div style="font-size:36px;opacity:0.3">📋</div><div style="font-size:13px;font-weight:600">Sin acciones registradas</div></div>';
+  }
+}
+
+function buildEventsTable(events, state) {
+  if (!events || !events.length) return '<div style="padding:16px;text-align:center;color:var(--muted);font-size:12px">Sin acciones aún</div>';
+
+  const foulLabels = {
+    personal:'FALTA-PERSONAL', tecnica:'TÉCNICA', antideportiva:'TANTIDEPORTIVA',
+    'tecnica-coach':'TÉC-COACH', 'tecnica-banquillo':'TÉC-BANQUILLO',
+    descalificante:'DESCALIFICANTE', ft1:'1-TIRO-LIBRE', ft2:'2-TIROS-LIBRES', ft3:'3-TIROS-LIBRES'
+  };
+
+  // Running score tracker
+  let lScore = 0, vScore = 0;
+  const scored = events.map(ev => {
+    if (ev.type === 'score') {
+      if (ev.side === 'local')   lScore += ev.pts;
+      else                       vScore += ev.pts;
+    }
+    return { ...ev, snapL: lScore, snapV: vScore };
+  });
+
+  const rows = [...scored].reverse().map((ev, i) => {
+    const side   = ev.side;
+    const team   = side ? state[side] : null;
+    const tColor = team ? team.color : '#6b7280';
+    const tName  = team ? team.name : '';
+    const pNum   = ev.playerNum ? `#${ev.playerNum}` : '';
+    const period = ev.period || 1;
+    const ts     = ev.ts || '';
+
+    let action = '', scoreSnap = '', dotColor = '#6b7280', icon = '●';
+
+    if (ev.type === 'score') {
+      const label = ev.pts === 1 ? 'CANASTA-1P' : ev.pts === 2 ? 'CANASTA-2P' : 'CANASTA-3P';
+      action    = `${label} — [ ${ev.snapL} - ${ev.snapV} ]`;
+      dotColor  = ev.pts === 3 ? '#22c55e' : ev.pts === 2 ? '#fbbf24' : '#60a5fa';
+      icon = ev.pts === 3 ? '▲' : ev.pts === 2 ? '●' : '○';
+    } else if (ev.type === 'foul') {
+      action   = foulLabels[ev.foulType] || 'FALTA';
+      dotColor = '#ef4444'; icon = '⚠';
+    } else if (ev.type === 'ft') {
+      action   = ev.result === 'made' ? `TIRO-LIBRE ✓` : `TIRO-LIBRE ✗`;
+      dotColor = ev.result === 'made' ? '#22c55e' : '#ef4444';
+      icon = '◎';
+    } else if (ev.type === 'sub') {
+      action   = `CAMBIO: entra #${ev.in} / sale #${ev.out}`;
+      dotColor = '#a78bfa'; icon = '↕';
+    } else if (ev.type === 'tapon') {
+      action = 'TAPÓN'; dotColor = '#f97316'; icon = '✋';
+    } else if (ev.type === 'perdida') {
+      action = 'PÉRDIDA'; dotColor = '#9ca3af'; icon = '✗';
+    } else if (ev.type === 'period') {
+      return `<div style="background:#0d1220;padding:5px 12px;display:flex;align-items:center;
+                          gap:8px;border-bottom:1px solid #1f2937">
+        <span style="font-size:9px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;
+                     font-weight:700;letter-spacing:1px">── INICIO ${ev.period}° PERÍODO ──</span>
+      </div>`;
+    }
+
+    return `
+      <div style="display:flex;align-items:center;gap:8px;padding:6px 12px;
+                  border-bottom:1px solid #1a2030;
+                  background:${i%2===0?'#111827':'#0f1623'}"
+           class="hist-ev-row">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;
+                     color:var(--muted);min-width:24px;text-align:center">[${period}]</span>
+        <span style="font-size:10px;color:var(--muted);min-width:46px;font-family:monospace">${ts}</span>
+        <span style="width:10px;height:10px;border-radius:50%;background:${tColor};
+                     flex-shrink:0;display:inline-block"></span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;
+                     color:${tColor};font-weight:700;min-width:90px">${tName} ${pNum}</span>
+        <span style="flex:1;font-family:'Barlow Condensed',sans-serif;font-size:12px;
+                     font-weight:700;color:#e5e7eb">${action}</span>
+        <button onclick="undoEvent(${scored.length - 1 - i})"
+          style="padding:3px 7px;border-radius:5px;border:none;background:#7f1d1d;
+                 color:#fca5a5;font-size:10px;font-weight:700;cursor:pointer;flex-shrink:0">
+          🗑
+        </button>
+      </div>`;
+  }).join('');
+
+  return `<div style="border:1px solid #1f2937;border-radius:8px;overflow:hidden;margin:0 12px 8px">${rows}</div>`;
+}
+
+function undoEvent(idx) {
+  if (!confirm('¿Eliminar esta acción?')) return;
+  const ev = STATE.events[idx];
+  if (!ev) return;
+
+  // Reverse the effect
+  if (ev.type === 'score') {
+    STATE[ev.side].score -= ev.pts;
+    const p = STATE[ev.side].players.find(p => p.number === ev.playerNum);
+    if (p) p.points -= ev.pts;
+    renderScores();
+  } else if (ev.type === 'foul') {
+    STATE[ev.side].fouls = Math.max(0, STATE[ev.side].fouls - 1);
+    if (ev.playerNum) {
+      const p = STATE[ev.side].players.find(p => p.number === ev.playerNum);
+      if (p) p.fouls = Math.max(0, p.fouls - 1);
+    }
+    renderFouls();
+    renderQuinteto('local'); renderQuinteto('visitor');
+  }
+
+  STATE.events.splice(idx, 1);
+  renderHistorial();
+}
 </script>
 </body>
 </html>
