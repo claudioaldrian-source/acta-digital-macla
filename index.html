@@ -83,7 +83,26 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .top-fouls-label { font-size:11px; color:#ffffff; }
 .top-fouls-num { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:900; }
 .top-tm-dots { display:flex; gap:3px; align-items:center; margin-top:2px; }
-.tm-dot { width:10px; height:10px; border-radius:50%; border:1px solid #3a4a6a; }
+
+.top-tm-dots span {
+  font-size:11px;
+  color:#ffffff;
+  font-weight:700;
+}
+
+.tm-dot {
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  border:2px solid #ffffff;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tm-dot.active {
+  background: #22c55e;
+  border-color: #22c55e;
+}
 
 .top-score-box {
   width:90px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
@@ -422,6 +441,43 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   touch-action: none;
 }
 
+@media (min-width: 900px) and (max-width: 1400px) {
+
+  /* Hacer laterales más chicos */
+  .side-col {
+    width: 90px;
+  }
+
+  /* Achicar camisetas */
+  .jersey-svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .jersey-num {
+    font-size: 16px;
+  }
+
+  /* Cancha más grande */
+  .court-wrap {
+    padding: 4px;
+  }
+
+  #court-svg {
+    transform: scale(1.15);
+  }
+
+  /* Barra superior más compacta */
+  .top-bar {
+    height: 70px;
+  }
+
+  .top-score-box {
+    font-size: 48px;
+  }
+
+}
+
 </style>
 </head>
 <body>
@@ -502,13 +558,16 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
         <span class="top-fouls-num" id="tb-local-fouls" style="color:#fff">0</span>
         <span id="tb-bonus-local" style="display:none;font-size:8px;color:#ef4444;font-weight:800;margin-left:4px">BONUS</span>
       </div>
-      <div class="top-tm-dots" id="tb-local-tm">
-        <span style="font-size:8px;color:var(--muted)">TM:</span>
-        <div class="tm-dot" style="background:var(--local)"></div>
-        <div class="tm-dot" style="background:var(--local)"></div>
-        <div class="tm-dot"></div><div class="tm-dot"></div><div class="tm-dot"></div>
-      </div>
-    </div>
+      
+<div class="top-tm-dots" id="tb-local-tm">
+  <span>TM:</span>
+  <div class="tm-dot" onclick="toggleTM('local',0)"></div>
+  <div class="tm-dot" onclick="toggleTM('local',1)"></div>
+  <div class="tm-dot" onclick="toggleTM('local',2)"></div>
+  <div class="tm-dot" onclick="toggleTM('local',3)"></div>
+  <div class="tm-dot" onclick="toggleTM('local',4)"></div>
+</div>
+  </div>
 
     <!-- Local score box -->
     <div class="top-score-box" id="top-local-score">0</div>
@@ -546,12 +605,14 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
         <span class="top-fouls-num" id="tb-visitor-fouls" style="color:#fff">0</span>
         <span id="tb-bonus-visitor" style="display:none;font-size:8px;color:#ef4444;font-weight:800;margin-left:4px">BONUS</span>
       </div>
-      <div class="top-tm-dots">
-        <span style="font-size:8px;color:var(--muted)">TM:</span>
-        <div class="tm-dot" style="background:var(--visitor)"></div>
-        <div class="tm-dot" style="background:var(--visitor)"></div>
-        <div class="tm-dot"></div><div class="tm-dot"></div><div class="tm-dot"></div>
-      </div>
+      <div class="top-tm-dots" id="tb-visitor-tm">
+  <span>TM:</span>
+  <div class="tm-dot" onclick="toggleTM('visitor',0)"></div>
+  <div class="tm-dot" onclick="toggleTM('visitor',1)"></div>
+  <div class="tm-dot" onclick="toggleTM('visitor',2)"></div>
+  <div class="tm-dot" onclick="toggleTM('visitor',3)"></div>
+  <div class="tm-dot" onclick="toggleTM('visitor',4)"></div>
+</div>
     </div>
   </div>
 
@@ -2132,6 +2193,16 @@ function undoEvent(idx) {
 
   STATE.events.splice(idx, 1);
   renderHistorial();
+}
+
+function toggleTM(side, index) {
+  const container = document.getElementById('tb-' + side + '-tm');
+  const dots = container.querySelectorAll('.tm-dot');
+
+  const dot = dots[index];
+
+  // alternar estado
+  dot.classList.toggle('active');
 }
 </script>
 </body>
