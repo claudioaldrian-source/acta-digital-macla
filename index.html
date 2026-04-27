@@ -80,29 +80,10 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   letter-spacing:1.5px; padding:2px 10px; border-radius:4px; color:#fff;
 }
 .top-fouls-row { display:flex; align-items:center; gap:4px; }
-.top-fouls-label { font-size:11px; color:#ffffff; }
-.top-fouls-num { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:900; }
+.top-fouls-label { font-size:9px; color:var(--muted); }
+.top-fouls-num { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:800; }
 .top-tm-dots { display:flex; gap:3px; align-items:center; margin-top:2px; }
-
-.top-tm-dots span {
-  font-size:11px;
-  color:#ffffff;
-  font-weight:700;
-}
-
-.tm-dot {
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  border:2px solid #ffffff;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.tm-dot.active {
-  background: #22c55e;
-  border-color: #22c55e;
-}
+.tm-dot { width:10px; height:10px; border-radius:50%; border:1px solid #3a4a6a; }
 
 .top-score-box {
   width:90px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
@@ -436,48 +417,6 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   margin-bottom:6px; transition:all 0.15s; }
 .foul-opt:active { background:#1a2a50; }
 .foul-opt-sub { font-size:9px; color:var(--muted); display:block; margin-top:2px; }
-
-#court-svg {
-  touch-action: none;
-}
-
-@media (min-width: 900px) and (max-width: 1400px) {
-
-  /* Hacer laterales más chicos */
-  .side-col {
-    width: 90px;
-  }
-
-  /* Achicar camisetas */
-  .jersey-svg {
-    width: 44px;
-    height: 44px;
-  }
-
-  .jersey-num {
-    font-size: 16px;
-  }
-
-  /* Cancha más grande */
-  .court-wrap {
-    padding: 4px;
-  }
-
-  #court-svg {
-    transform: scale(1.15);
-  }
-
-  /* Barra superior más compacta */
-  .top-bar {
-    height: 70px;
-  }
-
-  .top-score-box {
-    font-size: 48px;
-  }
-
-}
-
 </style>
 </head>
 <body>
