@@ -182,14 +182,28 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
 /* Banco button in side col */
 .banco-btn {
-  margin:2px 0 4px; padding:5px; border-radius:6px;
-  border:1px dashed #2a3a50; background:transparent; color:var(--muted);
-  cursor:pointer; font-size:10px; font-weight:600; text-align:center; width:100%;
+  	margin:2px 0 4px; 
+	padding:5px; 
+	border-radius:6px;
+  	border:1px dashed #2a3a50; 
+	background:transparent; 
+	color:var(--muted);
+  	cursor:pointer; 
+	font-size:10px; 
+	font-weight:600; 
+	text-align:center; 
+	width:100%;
   -webkit-tap-highlight-color:transparent;
+	position: relative;
+  	z-index: 40;
 }
 .banco-btn:active { background:#1a2438; }
+
 .ent-row { padding:4px 6px; display:flex; align-items:center; gap:4px; font-size:9px; color:var(--muted); }
+
 .ent-dot { width:9px; height:9px; border-radius:50%; background:#1a2a40; border:1px solid #2a3a50; }
+
+
 
 /* CENTER: COURT */
 .court-center { flex:1; display:flex; flex-direction:column; min-width:0; overflow:hidden; }
