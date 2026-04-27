@@ -85,9 +85,12 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   letter-spacing:1.5px; padding:2px 10px; border-radius:4px; color:#fff;
 }
 .top-fouls-row { display:flex; align-items:center; gap:4px; }
-.top-fouls-label { font-size:9px; color:var(--muted); }
+.top-fouls-label { font-size:11px; color:#ffffff;
+  font-weight:600; }
 .top-fouls-num { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:800; }
+
 .top-tm-dots { display:flex; gap:3px; align-items:center; margin-top:2px; }
+
 .tm-dot { width:10px; 
 	height:10px; 
 	border-radius:50%; 
@@ -107,9 +110,12 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .top-center {
   flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
 }
-.top-team-name-local { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:800; color:#fff; letter-spacing:0.5px; }
-.top-team-name-visitor { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:800; color:#fff; letter-spacing:0.5px; }
+.top-team-name-local { font-family:'Barlow Condensed',sans-serif; font-size:25px; font-weight:900; color:#ffffff; letter-spacing:1.5px; }
+
+.top-team-name-visitor { font-family:'Barlow Condensed',sans-serif; font-size:25px; font-weight:900; color:#ffffff; letter-spacing:1.5px; }
+
 .top-clock-row { display:flex; align-items:center; gap:8px; }
+
 .top-clock {
   font-family:'Barlow Condensed',sans-serif; font-size:40px; font-weight:900;
   color:#ff2200; letter-spacing:3px; background:#000; border:2px solid #330000;
@@ -119,7 +125,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 }
 .top-clock.green { color:#22ff44; border-color:#003300; box-shadow:0 0 12px #22ff4466,inset 0 0 8px #00000088; }
 .top-clock.warn  { color:#ffaa00; border-color:#332200; box-shadow:0 0 12px #ffaa0066,inset 0 0 8px #00000088; }
-.top-period { font-size:10px; color:var(--muted); letter-spacing:1px; margin-top:2px; }
+.top-period { font-size:12px; color:#ffffff; font-weight:600; letter-spacing:1px; margin-top:2px; }
 .top-clock-btns { display:flex; gap:4px; margin-top:3px; }
 .tcbtn { padding:3px 9px; border-radius:5px; border:none; cursor:pointer;
   font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.5px; }
@@ -187,10 +193,10 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 	border-radius:6px;
   	border:1px dashed #2a3a50; 
 	background:transparent; 
-	color:var(--muted);
+	color:#ffffff !important;
   	cursor:pointer; 
-	font-size:10px; 
-	font-weight:600; 
+	font-size:12px; 
+	font-weight:700; 
 	text-align:center; 
 	width:100%;
   -webkit-tap-highlight-color:transparent;
@@ -460,11 +466,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
 @media (max-width: 1024px) {
 
-  .side-col {
-    width: 90px;
-  }
-
-  .jersey-svg {
+   .jersey-svg {
     width: 40px;
     height: 40px;
   }
@@ -969,7 +971,7 @@ const STATE = {
 // ═══════════════════════════════════════════════════════
 //  SETUP
 // ═══════════════════════════════════════════════════════
-const DEFAULT_NUMS = [4,5,6,7,8,9,10,11,12,14];
+const DEFAULT_NUMS = [4,5,6,7,8,9,10,11,12,13,14,15];
 
 function buildSetupPlayers() {
   ['local','visitor'].forEach(side => {
