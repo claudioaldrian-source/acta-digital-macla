@@ -22,13 +22,23 @@ html, body { width:100%;
 	}
 
 /* SCREENS */
-.screen { display:none; width:100%; height:100vh; flex-direction:column; }
-.screen.active { display:flex; }
+.screen {
+  display:none;
+  width:100%;
+  min-height:100vh;
+  height:auto;
+  flex-direction:column;
+}
+.screen.active {
+  display:flex;
+}
 
 /* ── SETUP ── */
 #screen-setup {
   background:linear-gradient(160deg,#060d20 0%,#0a1535 60%,#0d1a3a 100%);
-  overflow-y:auto; padding:20px 16px 32px; align-items:center;
+  overflow-y:auto;
+  padding:20px 16px 80px; /* 👈 más espacio abajo */
+  align-items:center;
 }
 .setup-logo { width:64px;height:64px;border-radius:50%;background:var(--local);
   border:3px solid #fff;display:flex;align-items:center;justify-content:center;
@@ -64,7 +74,8 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .btn-start { width:100%;max-width:560px;padding:15px;
   background:linear-gradient(135deg,#1a56db,#1140b0);border:none;border-radius:12px;color:#fff;
   font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:2px;
-  cursor:pointer;margin-top:6px;box-shadow:0 4px 20px #1a56db44;transition:transform 0.1s; }
+  cursor:pointer;margin-top:6px;box-shadow:0 4px 20px #1a56db44;transition:transform 0.1s; margin-bottom: 40px; }
+
 .btn-start:active { transform:scale(0.98); }
 
 /* ── GAME SCREEN LAYOUT (GES style) ── */
@@ -72,9 +83,9 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
 /* TOP BAR */
 .top-bar {
-  display:flex; align-items:stretch; height:80px; flex-shrink:0;
+  display:flex; align-items:stretch; height:120px; flex-shrink:0;
   background:linear-gradient(180deg,#0a0f20 0%,#101828 100%);
-  border-bottom:2px solid #0d1530;
+  border-bottom:2px solid #0d1530; padding: 10px 16px;  /* 👈 más aire */
 }
 .top-team-zone {
   width:160px; flex-shrink:0; display:flex; flex-direction:column;
@@ -105,7 +116,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
   border-radius:4px; margin:8px 2px;
 }
 #top-local-score  { background:#1a3060; box-shadow:inset 0 0 20px #1a56db33; }
-#top-visitor-score { background:#3a1020; box-shadow:inset 0 0 20px #c0392b33; }
+#top-visitor-score { background:grey; box-shadow:inset 0 0 20px #c0392b33; }
 
 .top-center {
   flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
@@ -127,8 +138,10 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .top-clock.warn  { color:#ffaa00; border-color:#332200; box-shadow:0 0 12px #ffaa0066,inset 0 0 8px #00000088; }
 .top-period { font-size:12px; color:#ffffff; font-weight:600; letter-spacing:1px; margin-top:2px; }
 .top-clock-btns { display:flex; gap:4px; margin-top:3px; }
-.tcbtn { padding:3px 9px; border-radius:5px; border:none; cursor:pointer;
+
+.tcbtn { padding:7px 14px; border-radius:5px; border:none; cursor:pointer;
   font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.5px; }
+
 .tcbtn.play  { background:#065f46; color:#fff; }
 .tcbtn.pause { background:#7f1d1d; color:#fff; }
 .tcbtn.grey  { background:#1e2a3a; color:var(--muted); border:1px solid var(--border); }
@@ -136,7 +149,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 /* TAB BAR */
 .tab-bar {
   display:flex; height:34px; flex-shrink:0;
-  background:#0d1220; border-bottom:2px solid #1a2a40;
+  background:#0d1220; border-bottom:2px solid #1a2a40; margin-top: 8px;
 }
 .tab-btn { flex:1; background:transparent; border:none; border-bottom:2px solid transparent;
   color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700;
@@ -154,7 +167,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
 /* SIDE COLUMNS (jerseys) */
 .side-col {
-  width:130px; flex-shrink:0; display:flex; flex-direction:column;
+  width:110px; flex-shrink:0; display:flex; flex-direction:column;
   background:#141e30; border-right:1px solid #1a2840;
   overflow-y:auto; padding:4px;
 }
@@ -212,12 +225,16 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
 
 /* CENTER: COURT */
-.court-center { flex:1; display:flex; flex-direction:column; min-width:0; overflow:hidden; }
+.court-center { flex:1; display:flex; flex-direction:column; min-width:0; overflow:visible; }
+
 .court-wrap { flex:1; display:flex; align-items:center; justify-content:center;
-  padding:8px; position:relative; overflow:hidden; }
+  padding:12px 8px 4px; position:relative; overflow:hidden; }
+
 .court-container { position:relative; width:100%; height:100%; }
-#court-svg { width:100%; 
-	height:100%; 
+
+#court-svg { width:100%; max-width: 900vh; 
+	height: auto;
+  max-height: 80vh;   /* 👈 baja la altura */
 	border-radius:6px; 
 	cursor:crosshair;
   	filter:drop-shadow(0 4px 16px #0009); -webkit-tap-	highlight-color:transparent;
@@ -634,6 +651,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
     <!-- LOCAL JERSEYS -->
     <div class="side-col" id="col-local">
+<button class="banco-btn" onclick="openBanco('local')">👥 BANCO</button>
       <div class="ent-row" id="ent-local-row">
         <span>ENT:</span>
         <div class="ent-dot" style="background:var(--local)"></div>
@@ -641,7 +659,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
         <div class="ent-dot"></div>
       </div>
       <div id="quinteto-local"></div>
-      <button class="banco-btn" onclick="openBanco('local')">👥 BANCO</button>
+      
     </div>
 
     <!-- CENTER COURT -->
@@ -774,6 +792,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
     <!-- VISITOR JERSEYS -->
     <div class="side-col right" id="col-visitor">
+<button class="banco-btn" onclick="openBanco('visitor')">👥 BANCO</button>
       <div class="ent-row">
         <span>ENT:</span>
         <div class="ent-dot" style="background:var(--visitor)"></div>
@@ -781,7 +800,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
         <div class="ent-dot"></div>
       </div>
       <div id="quinteto-visitor"></div>
-      <button class="banco-btn" onclick="openBanco('visitor')">👥 BANCO</button>
+      
     </div>
 
   </div><!-- /panel-partido -->
@@ -1694,6 +1713,13 @@ function addScore(side, playerNum, pts, svgX, svgY) {
   renderQuinteto('local');
   renderQuinteto('visitor');
   showScorePopup(pts, svgX, svgY);
+STATE.selectedPlayer = null;
+STATE.selectedSide   = null;
+document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
+document.getElementById('sel-text').style.color = '';
+document.getElementById('btn-otras-faltas').innerHTML = '<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS';
+document.getElementById('btn-otras-faltas').classList.remove('falta-personal');
+
 }
 
 function showScorePopup(pts, svgX, svgY) {
