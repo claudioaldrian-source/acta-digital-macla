@@ -25,12 +25,23 @@ html, body { width:100%;
 .screen {
   display:none;
   width:100%;
-  min-height:100vh;
-  height:auto;
   flex-direction:column;
 }
 .screen.active {
   display:flex;
+}
+#screen-game.active {
+  display:flex;
+  height:100vh;
+  max-height:100vh;
+  overflow:hidden;
+}
+#screen-setup.active {
+  display:flex;
+  height:auto;
+  min-height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
 }
 
 /* ── SETUP ── */
@@ -79,11 +90,11 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .btn-start:active { transform:scale(0.98); }
 
 /* ── GAME SCREEN LAYOUT (GES style) ── */
-#screen-game { background:#1a1a2e; }
+#screen-game { background:#1a1a2e; height:100vh; max-height:100vh; overflow:hidden; display:none; flex-direction:column; }
 
 /* TOP BAR */
 .top-bar {
-  display:flex; align-items:stretch; height:120px; flex-shrink:0;
+  display:flex; align-items:stretch; height:88px; flex-shrink:0;
   background:linear-gradient(180deg,#0a0f20 0%,#101828 100%);
   border-bottom:2px solid #0d1530; padding: 10px 16px;  /* 👈 más aire */
 }
@@ -149,7 +160,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 /* TAB BAR */
 .tab-bar {
   display:flex; height:34px; flex-shrink:0;
-  background:#0d1220; border-bottom:2px solid #1a2a40; margin-top: 8px;
+  background:#0d1220; border-bottom:2px solid #1a2a40;
 }
 .tab-btn { flex:1; background:transparent; border:none; border-bottom:2px solid transparent;
   color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700;
@@ -163,7 +174,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .tab-action.save { color:#22c55e; }
 
 /* MAIN BODY (3 columns) */
-.game-body { flex:1; display:flex; overflow:hidden; min-height:0; background:#141e30; }
+.game-body { flex:1; display:flex; overflow:hidden; min-height:0; min-height:0; background:#1e2a3e; }
 
 /* SIDE COLUMNS (jerseys) */
 .side-col {
@@ -228,16 +239,15 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .court-center { flex:1; display:flex; flex-direction:column; min-width:0; overflow:visible; }
 
 .court-wrap { flex:1; display:flex; align-items:center; justify-content:center;
-  padding:4px 0px 2px; position:relative; overflow:hidden; }
+  padding:2px 0; position:relative; overflow:hidden; }
 
-.court-container { position:relative; width:100%; height:100%; display:flex; align-items:stretch; }
+.court-container { position:relative; width:100%; height:100%; }
 
-#court-svg { width:100%; height:100%;
-	border-radius:4px;
-	cursor:crosshair;
-	filter:drop-shadow(0 4px 16px #0009);
-	-webkit-tap-highlight-color:transparent;
-	touch-action: manipulation;
+#court-svg { width:100%; height:auto; max-height:50vh;
+  border-radius:6px; cursor:crosshair;
+  filter:drop-shadow(0 4px 16px #0009);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 
 #popup-layer { position:absolute; 
@@ -671,7 +681,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
       <!-- Court -->
       <div class="court-wrap">
         <div class="court-container">
-          <svg id="court-svg" viewBox="55 0 490 320" xmlns="http://www.w3.org/2000/svg">
+          <svg id="court-svg" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="woodGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#dda820"/>
