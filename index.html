@@ -1286,6 +1286,7 @@ function confirmFT() {
   }
   showToast(`🎯 Tiros libres: ${made} convertido${made!==1?'s':''}, ${missed} errado${missed!==1?'s':''}`);
   closeFT();
+clearSelection();   // 👈 ESTA ES LA CLAVE
 }
 
 function closeFT() {
@@ -1313,6 +1314,8 @@ function openFoulModal() {
     renderQuinteto('local');
     renderQuinteto('visitor');
     showToast(`⚠️ Falta personal — ${team.name} Nº${number} ${player?.name||''} (${player.fouls} faltas)`);
+
+clearSelection();   // 👈 ESTA ES LA CLAVE
     return;
   }
   // No player selected → open Otras Faltas modal
@@ -1341,14 +1344,15 @@ else if (type==='ft3') openFT(oppSide, null, 3);
   STATE.selectedSide   = null;
   document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
   document.getElementById('sel-text').style.color = '';
-  const fb2 = document.getElementById('btn-otras-faltas');
-  if(fb2){ fb2.innerHTML='<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS'; fb2.classList.remove('falta-personal'); }
+ 
   renderQuinteto('local');
   renderQuinteto('visitor');
 
+
 }
 
-function closeFoul() { document.getElementById('modal-foul').classList.remove('open'); }
+function closeFoul() { document.getElementById('modal-foul').classList.remove('open'); 
+}
 
 // ═══════════════════════════════════════════════════════
 //  OTRAS FALTAS
@@ -1803,13 +1807,16 @@ function registerTapon() {
   STATE.events.push({ type:'tapon', side, playerNum:number,
     ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period });
   showToast('🏀 Tapón registrado - Nº' + number);
+clearSelection();
 }
+
 function registerPerdida() {
   if (!STATE.selectedPlayer) { alert('Seleccioná primero el jugador.'); return; }
   const { side, number } = STATE.selectedPlayer;
   STATE.events.push({ type:'perdida', side, playerNum:number,
     ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period });
   showToast('❌ Pérdida registrada - Nº' + number);
+clearSelection();
 }
 
 
@@ -2357,6 +2364,25 @@ function cambiarLado() {
   showToast(_ladosCambiados
     ? '🔄 Lados cambiados — Local ataca derecha'
     : '🔄 Lados restaurados — Local ataca izquierda');
+}
+
+function clearSelection() {
+  STATE.selectedPlayer = null;
+  STATE.selectedSide = null;
+
+  // quitar highlight visual
+  document.querySelectorAll('.jersey-card.selected')
+    .forEach(el => el.classList.remove('selected'));
+
+  // reset texto barra
+  document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
+
+const fb2 = document.getElementById('btn-otras-faltas');
+if (fb2) {
+  fb2.innerHTML = '<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS';
+  fb2.classList.remove('falta-personal');
+}
+
 }
 
 </script>
