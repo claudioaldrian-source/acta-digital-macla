@@ -442,8 +442,10 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .modal-overlay { display:none; position:fixed; inset:0; background:#000c; z-index:100;
   align-items:center; justify-content:center; }
 .modal-overlay.open { display:flex; }
+
 .modal-box { background:#1f2937; border:1px solid #374151; border-radius:14px; padding:18px;
-  width:min(92vw,440px); max-height:85vh; overflow-y:auto; }
+  width:min(110vw,600px); max-height:85vh; overflow-y:auto; }
+
 .modal-title { font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:800;
   color:#fff; margin-bottom:12px; letter-spacing:1px; }
 .bench-player { display:flex; align-items:center; gap:10px; padding:9px 11px; border-radius:9px;
@@ -871,6 +873,17 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
     <div class="modal-title" id="banco-title">👥 Banco</div>
     <div style="font-size:11px;color:var(--muted);margin-bottom:10px" id="banco-sub">Seleccioná el jugador que entra</div>
     <div id="bench-list"></div>
+
+<div style="display:flex;gap:8px;margin-top:10px">
+  <button onclick="clearQuinteto()" style="flex:1;padding:10px;border-radius:8px;background:#111827;color:#fff;border:1px solid #374151">
+    LIMPIAR
+  </button>
+
+  <button onclick="confirmQuinteto()" style="flex:1;padding:10px;border-radius:8px;background:#1d4ed8;color:#fff;border:none">
+    CONFIRMAR
+  </button>
+</div>
+
     <button class="modal-close" onclick="closeBanco()">Cancelar</button>
   </div>
 </div>
@@ -1152,20 +1165,42 @@ ${l.score>v.score?'🏆 Gana '+l.name:v.score>l.score?'🏆 Gana '+v.name:'🤝 
 function openBanco(side) {
   STATE.bancoSide = side;
   const team = STATE[side];
-  const bench = team.players.filter(p => !p.inCourt);
-  document.getElementById('banco-title').textContent = `👥 Banco ${team.name}`;
-  document.getElementById('banco-sub').textContent = bench.length ? 'Tocá el jugador que ENTRA' : 'No hay jugadores en el banco.';
-  const list = document.getElementById('bench-list');
-  list.innerHTML = '';
-  bench.forEach(p => {
-    const row = document.createElement('div');
-    row.className = 'bench-player';
-    row.innerHTML = `<div class="bench-num" style="background:${team.color}">${p.number}</div>
-      <div class="bench-name">${p.name||'Nº'+p.number}</div>
-      <div class="bench-stats">${p.points}pts · ${p.fouls}F</div>`;
-    row.onclick = () => selectBenchPlayer(p.number);
-    list.appendChild(row);
+
+  document.getElementById('banco-title').textContent = `👥 ${team.name}`;
+  document.getElementById('banco-sub').textContent = 'Seleccioná los 5 jugadores titulares';
+
+  const container = document.getElementById('bench-list');
+  container.innerHTML = '';
+
+container.style.display = 'grid';
+container.style.gridTemplateColumns = 'repeat(3, 1fr)';
+container.style.gap = '6px';
+
+  team.players.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'bench-player';
+
+    if (p.inCourt) {
+  div.style.border = '2px solid #22c55e';
+  div.style.background = '#052e1f';
+} else {
+  div.style.border = '2px solid #7f1d1d';   // rojo sutil
+  div.style.background = '#1a0f0f';         // fondo oscuro rojo
+}
+
+    div.onclick = () => togglePlayer(p.number);
+
+    div.innerHTML = `
+      <div class="bench-num" style="background:${team.color}">${p.number}</div>
+      <div class="bench-name">${p.name || 'Jugador'}</div>
+      <div class="bench-stats" style="color:${p.inCourt ? '#22c55e' : '#ef4444'}">
+  ${p.inCourt ? 'EN CANCHA' : 'BANCO'}
+</div>
+    `;
+
+    container.appendChild(div);
   });
+
   document.getElementById('modal-banco').classList.add('open');
 }
 
@@ -2382,7 +2417,43 @@ if (fb2) {
   fb2.innerHTML = '<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS';
   fb2.classList.remove('falta-personal');
 }
+}
 
+function togglePlayer(num) {
+  const team = STATE[STATE.bancoSide];
+  const player = team.players.find(p => p.number === num);
+
+  const activos = team.players.filter(p => p.inCourt);
+
+  if (!player.inCourt && activos.length >= 5) {
+    alert('Solo podés tener 5 jugadores en cancha');
+    return;
+  }
+
+  player.inCourt = !player.inCourt;
+
+  openBanco(STATE.bancoSide); // refresca
+}
+
+function clearQuinteto() {
+  const team = STATE[STATE.bancoSide];
+  team.players.forEach(p => p.inCourt = false);
+  openBanco(STATE.bancoSide);
+}
+
+function confirmQuinteto() {
+  const team = STATE[STATE.bancoSide];
+  const activos = team.players.filter(p => p.inCourt);
+
+  if (activos.length !== 5) {
+    alert('Debés seleccionar 5 jugadores');
+    return;
+  }
+
+  renderQuinteto('local');
+  renderQuinteto('visitor');
+
+  closeBanco();
 }
 
 </script>
