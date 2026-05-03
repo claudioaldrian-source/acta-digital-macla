@@ -239,12 +239,12 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 .court-center { flex:1; display:flex; flex-direction:column; min-width:0; overflow:visible; }
 
 .court-wrap { flex:1; display:flex; align-items:center; justify-content:center;
-  padding:6px 0; position:relative; overflow:hidden; }
+  padding:10px 0; position:relative; overflow:hidden; }
 
 .court-container { position:relative; width:100%; height:100%; }
 
-#court-svg { width:100%; height:auto; max-height:68vh;
-  border-radius:4px; cursor:crosshair;
+#court-svg { width:100%; height:auto; max-height:65vh;
+  border-radius:6px; cursor:crosshair;
   filter:drop-shadow(0 4px 16px #0009);
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
@@ -681,7 +681,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
       <!-- Court -->
       <div class="court-wrap">
         <div class="court-container">
-          <svg id="court-svg" viewBox="62 8 476 304" xmlns="http://www.w3.org/2000/svg">
+          <svg id="court-svg" viewBox="50 5 500 310" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="woodGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#dda820"/>
@@ -1658,9 +1658,8 @@ e.preventDefault();
   }
   const svg = document.getElementById('court-svg');
   const rect = svg.getBoundingClientRect();
-  const vb = svg.viewBox.baseVal;
-  const x = vb.x + ((e.clientX - rect.left) / rect.width)  * vb.width;
-  const y = vb.y + ((e.clientY - rect.top)  / rect.height) * vb.height;
+  const x = ((e.clientX - rect.left) / rect.width)  * 600;
+  const y = ((e.clientY - rect.top)  / rect.height) * 320;
   const side = STATE.selectedPlayer.side;
   const pts  = detectZone(x, y, side);
   if (pts > 0) {
