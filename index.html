@@ -663,9 +663,15 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
     <!-- LOCAL JERSEYS -->
     <div class="side-col" id="col-local">
 <button class="banco-btn" onclick="openBanco('local')"
-  onpointerdown="startLongPress('local')"
-  onpointerup="cancelLongPress()"
-  onpointerleave="cancelLongPress()">👥 LOCAL</button>
+  onmousedown="startLongPress('local')"
+  onmouseup="cancelLongPress()"
+  onmouseleave="cancelLongPress()"
+
+  ontouchstart="startLongPress('local')"
+  ontouchend="cancelLongPress()"
+  ontouchcancel="cancelLongPress()">
+  👥 LOCAL
+</button>
       <div class="ent-row" id="ent-local-row">
         <span>ENT:</span>
         <div class="ent-dot"></div>
@@ -808,9 +814,17 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
     <div class="side-col right" id="col-visitor">
 
 <button class="banco-btn" onclick="openBanco('visitor')"
-  onpointerdown="startLongPress('visitor')"
-  onpointerup="cancelLongPress()"
-  onpointerleave="cancelLongPress()">👥 VISITANTE</button>
+  onmousedown="startLongPress('visitor')"
+  onmouseup="cancelLongPress()"
+  onmouseleave="cancelLongPress()"
+
+  ontouchstart="startLongPress('visitor')"
+  ontouchend="cancelLongPress()"
+  ontouchcancel="cancelLongPress()">
+  👥 VISITANTE
+</button>
+
+
 
       <div class="ent-row" id="ent-visitor-row">
         <span>ENT:</span>
