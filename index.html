@@ -94,7 +94,7 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
 /* TOP BAR */
 .top-bar {
-  display:flex; align-items:stretch; height:88px; flex-shrink:0;
+  display:flex; align-items:stretch; height:100px; flex-shrink:0;
   background:linear-gradient(180deg,#0a0f20 0%,#101828 100%);
   border-bottom:2px solid #0d1530; padding: 10px 16px;  /* 👈 más aire */
 }
@@ -159,11 +159,11 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
 /* TAB BAR */
 .tab-bar {
-  display:flex; height:34px; flex-shrink:0;
+  display:flex; height:28px; flex-shrink:0;
   background:#0d1220; border-bottom:2px solid #1a2a40;
 }
 .tab-btn { flex:1; background:transparent; border:none; border-bottom:2px solid transparent;
-  color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700;
+  color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700;
   letter-spacing:1px; cursor:pointer; transition:all 0.15s; white-space:nowrap;
   -webkit-tap-highlight-color:transparent; }
 .tab-btn.active { color:#fff; border-bottom-color:#22c55e; }
@@ -660,11 +660,14 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
     <!-- LOCAL JERSEYS -->
     <div class="side-col" id="col-local">
-<button class="banco-btn" onclick="openBanco('local')">👥 BANCO</button>
+<button class="banco-btn" onclick="openBanco('local')"
+  onpointerdown="startLongPress('local')"
+  onpointerup="cancelLongPress()"
+  onpointerleave="cancelLongPress()">👥 LOCAL</button>
       <div class="ent-row" id="ent-local-row">
         <span>ENT:</span>
-        <div class="ent-dot" style="background:var(--local)"></div>
-        <div class="ent-dot" style="background:var(--local)"></div>
+        <div class="ent-dot"></div>
+        <div class="ent-dot"></div>
         <div class="ent-dot"></div>
       </div>
       <div id="quinteto-local"></div>
@@ -801,11 +804,16 @@ input[type=color] { width:40px;height:36px;border-radius:8px;border:1px solid va
 
     <!-- VISITOR JERSEYS -->
     <div class="side-col right" id="col-visitor">
-<button class="banco-btn" onclick="openBanco('visitor')">👥 BANCO</button>
-      <div class="ent-row">
+
+<button class="banco-btn" onclick="openBanco('visitor')"
+  onpointerdown="startLongPress('visitor')"
+  onpointerup="cancelLongPress()"
+  onpointerleave="cancelLongPress()">👥 VISITANTE</button>
+
+      <div class="ent-row" id="ent-visitor-row">
         <span>ENT:</span>
-        <div class="ent-dot" style="background:var(--visitor)"></div>
-        <div class="ent-dot" style="background:var(--visitor)"></div>
+        <div class="ent-dot"></div>
+        <div class="ent-dot"></div>
         <div class="ent-dot"></div>
       </div>
       <div id="quinteto-visitor"></div>
@@ -1190,6 +1198,16 @@ function doSubstitution(inNum, outNum) {
   STATE.events.push({ type:'sub', side, in:inNum, out:outNum, ts:new Date().toLocaleTimeString('es-AR'), period:STATE.period });
   closeBanco();
   renderQuinteto('local'); renderQuinteto('visitor');
+STATE.selectedPlayer = null;
+  STATE.selectedSide   = null;
+  document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
+  document.getElementById('sel-text').style.color = '';
+  const fb = document.getElementById('btn-otras-faltas');
+  if (fb) {
+    fb.innerHTML = '<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS';
+    fb.classList.remove('falta-personal');
+  }
+
 }
 
 function closeBanco() {
@@ -1317,6 +1335,17 @@ function registerFoul(type) {
   if (type==='ft1') openFT(oppSide, null, 1);
   else if (type==='ft2') openFT(oppSide, null, 2);
   else if (type==='ft3') openFT(oppSide, null, 3);
+
+else if (type==='ft3') openFT(oppSide, null, 3);
+  STATE.selectedPlayer = null;
+  STATE.selectedSide   = null;
+  document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
+  document.getElementById('sel-text').style.color = '';
+  const fb2 = document.getElementById('btn-otras-faltas');
+  if(fb2){ fb2.innerHTML='<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS'; fb2.classList.remove('falta-personal'); }
+  renderQuinteto('local');
+  renderQuinteto('visitor');
+
 }
 
 function closeFoul() { document.getElementById('modal-foul').classList.remove('open'); }
@@ -1326,6 +1355,7 @@ function closeFoul() { document.getElementById('modal-foul').classList.remove('o
 // ═══════════════════════════════════════════════════════
 let _otraFaltaSelected = null;
 let _otraFaltaSide = null;
+let _ladosCambiados = false;
 
 function selectOtraFalta(type) {
   _otraFaltaSelected = type;
@@ -1415,7 +1445,6 @@ function finishOtraFalta(playerNum) {
   const side    = _otraFaltaSide;
   const team    = STATE[side];
   const oppSide = side === 'local' ? 'visitor' : 'local';
-
   const labels = {
     'tecnica': 'Técnica', 'antideportiva': 'Antideportiva',
     'tecnica-coach': 'Técnica Banquillo C', 'tecnica-banquillo': 'Técnica Banquillo B',
@@ -1430,9 +1459,8 @@ function finishOtraFalta(playerNum) {
     const player = team.players.find(p => p.number === playerNum);
     if (player) {
       player.fouls++;
-      // Descalificante → mark as fouled out
       if (_otraFaltaSelected === 'descalificante') {
-        player.fouls = 5; // force foul out
+        player.fouls = 5;
       }
     }
   }
@@ -1449,6 +1477,22 @@ function finishOtraFalta(playerNum) {
     ts: new Date().toLocaleTimeString('es-AR'),
     period: STATE.period
   });
+
+  // Pintar círculo ENT si es falta de banquillo o coach
+  if (_otraFaltaSelected === 'tecnica-coach' || _otraFaltaSelected === 'tecnica-banquillo') {
+    const entId = side === 'local' ? 'ent-local-row' : 'ent-visitor-row';
+    const entRow = document.getElementById(entId);
+    if (entRow) {
+      const entDots = entRow.querySelectorAll('.ent-dot');
+      for (let i = 0; i < entDots.length; i++) {
+        if (!entDots[i].classList.contains('active')) {
+          entDots[i].classList.add('active');
+          entDots[i].style.background = team.color;
+          break;
+        }
+      }
+    }
+  }
 
   renderFouls();
   renderQuinteto('local');
@@ -1668,6 +1712,11 @@ e.preventDefault();
 }
 
 function detectZone(x, y, side) {
+// Si los lados están cambiados, invertir el side para la detección
+  if (STATE.ladosCambiados) {
+    side = side === 'local' ? 'visitor' : 'local';
+  }
+
   // SVG viewBox: 600x320. Court: x 60-540, y 10-310. Center y=160.
   //
   // The 3pt arc in the SVG is:
@@ -1719,16 +1768,18 @@ function addScore(side, playerNum, pts, svgX, svgY) {
     ts: new Date().toLocaleTimeString('es-AR'), period: STATE.period
   });
   renderScores();
+  showScorePopup(pts, svgX, svgY);
+  STATE.selectedPlayer = null;
+  STATE.selectedSide   = null;
+  document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
+  document.getElementById('sel-text').style.color = '';
+  const fb = document.getElementById('btn-otras-faltas');
+  if (fb) {
+    fb.innerHTML = '<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS';
+    fb.classList.remove('falta-personal');
+  }
   renderQuinteto('local');
   renderQuinteto('visitor');
-  showScorePopup(pts, svgX, svgY);
-STATE.selectedPlayer = null;
-STATE.selectedSide   = null;
-document.getElementById('sel-text').textContent = 'Seleccioná un jugador →';
-document.getElementById('sel-text').style.color = '';
-document.getElementById('btn-otras-faltas').innerHTML = '<span class="bb-icon">⚠️</span>OTRAS<br>FALTAS';
-document.getElementById('btn-otras-faltas').classList.remove('falta-personal');
-
 }
 
 function showScorePopup(pts, svgX, svgY) {
@@ -2235,14 +2286,79 @@ function undoEvent(idx) {
 }
 
 function toggleTM(side, index) {
+  const equipo = STATE[side].name;
   const container = document.getElementById('tb-' + side + '-tm');
   const dots = container.querySelectorAll('.tm-dot');
 
-  const dot = dots[index];
+  // Contar cuántos están activos
+  let activos = 0;
+  dots.forEach(d => { if (d.classList.contains('active')) activos++; });
 
-  // alternar estado
-  dot.classList.toggle('active');
+  if (activos >= 5) {
+    showToast('⛔ Ya se usaron los 5 tiempos muertos');
+    return;
+  }
+
+  if (!confirm('⏱️ Tiempo muerto ' + (activos + 1) + '/5\n' + equipo + '\n\n¿Confirmar?')) return;
+
+  // Pintar el siguiente disponible en orden
+  const color = STATE[side].color;
+  const siguiente = dots[activos];
+  siguiente.classList.add('active');
+  siguiente.style.background = color;
+  siguiente.style.borderColor = color;
+  siguiente.style.boxShadow = '0 0 7px 2px ' + color + '99';
+
+  STATE.events.push({
+    type: 'timeout', side,
+    teamName: equipo, tmNum: activos + 1,
+    ts: new Date().toLocaleTimeString('es-AR'),
+    period: STATE.period
+  });
+  showToast('⏱️ Tiempo muerto ' + (activos + 1) + '/5 — ' + equipo);
 }
+
+let _longPressTimer = null;
+
+function startLongPress(side) {
+  _longPressTimer = setTimeout(() => {
+    if (confirm('¿Cambiar de lado los equipos?\n(Se invierten canasta y columnas)')) {
+      cambiarLado();
+    }
+  }, 800); // 800ms mantenido = long press
+}
+
+function cancelLongPress() {
+  clearTimeout(_longPressTimer);
+}
+
+function cambiarLado() {
+  _ladosCambiados = !_ladosCambiados;
+
+  // Intercambiar columnas visualmente
+  const colLocal   = document.getElementById('col-local');
+  const colVisitor = document.getElementById('col-visitor');
+  const gameBody   = colLocal.parentElement;
+
+  if (_ladosCambiados) {
+    // Visitor va a la izquierda, Local a la derecha
+    gameBody.insertBefore(colVisitor, gameBody.firstChild);
+    gameBody.appendChild(colLocal);
+  } else {
+    // Volver al orden original
+    gameBody.insertBefore(colLocal, gameBody.firstChild);
+    const courtCenter = document.getElementById('court-center-wrap');
+    gameBody.insertBefore(colVisitor, courtCenter ? courtCenter.nextSibling : null);
+  }
+
+  // Invertir detección de zonas
+  STATE.ladosCambiados = _ladosCambiados;
+
+  showToast(_ladosCambiados
+    ? '🔄 Lados cambiados — Local ataca derecha'
+    : '🔄 Lados restaurados — Local ataca izquierda');
+}
+
 </script>
 </body>
 </html>
